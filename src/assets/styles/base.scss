@@ -1,0 +1,7 @@
+// scss @import 去引入其他的 scss 文件
+@import "./common/layout.scss";
+
+html,
+body {
+  height: 100%;
+}
