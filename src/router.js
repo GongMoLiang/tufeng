@@ -34,15 +34,15 @@ export default new Router({
         },
         {
           path: 'find',
-          component: import('./views/home/dest.vue')
+          component: () => import('./views/home/dest.vue')
         },
         {
           path: 'order',
-          component: import('/views/home/order.vue')
+          component: () => import('/views/home/order.vue')
         },
         {
           path: 'center',
-          component: import('./views/home/center.vue')
+          component: () => import('./views/home/center.vue')
         },
         {
           path: '',
@@ -54,7 +54,7 @@ export default new Router({
     {
       path: '/detail/:id',
       name: 'detail',
-      component: import('./views/detail/detail.vue')
+      component: () => import('./views/detail/detail.vue')
     }
   ]
 })
