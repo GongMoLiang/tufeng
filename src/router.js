@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// 引入的一级路由home组件
-import Home from './views/home/home.vue'
-// home下面的二级路由组件依次为首页、目的地页、发现页、订单页和个人中心
-import Index from './views/home/index.vue'
-import Dest from './views/home/dest.vue'
-import Find from './views/home/find.vue'
-import Order from './views/home/order.vue'
-import Center from './views/home/center.vue'
+// // 引入的一级路由home组件
+// import Home from './views/home/home.vue'
+// // home下面的二级路由组件依次为首页、目的地页、发现页、订单页和个人中心
+// import Index from './views/home/index.vue'
+// import Dest from './views/home/dest.vue'
+// import Find from './views/home/find.vue'
+// import Order from './views/home/order.vue'
+// import Center from './views/home/center.vue'
 
-// 引入的一级路由detail组件
-import Detail from './views/detail/detail.vue'
+// // 引入的一级路由detail组件
+// import Detail from './views/detail/detail.vue'
 
 Vue.use(Router)
 
@@ -21,28 +21,28 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
+      component: () => import('./views/home/home.vue'),
       // 二级路由
       children: [
         {
           path: 'index',
-          component: Index
+          component: () => import('./views/home/index.vue')
         },
         {
           path: 'dest',
-          component: Dest
+          component: () => import('./views/home/dest.vue')
         },
         {
           path: 'find',
-          component: Find
+          component: import('./views/home/dest.vue')
         },
         {
           path: 'order',
-          component: Order
+          component: import('/views/home/order.vue')
         },
         {
           path: 'center',
-          component: Center
+          component: import('./views/home/center.vue')
         },
         {
           path: '',
@@ -54,7 +54,7 @@ export default new Router({
     {
       path: '/detail/:id',
       name: 'detail',
-      component: Detail
+      component: import('./views/detail/detail.vue')
     }
   ]
 })
