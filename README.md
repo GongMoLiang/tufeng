@@ -1,2 +1,2 @@
-1 项目已近安装xiaos
-2 assets下的styles中layout为重置样式
+1 项目已近安装 xiaos
+2 安装好了 vant UI

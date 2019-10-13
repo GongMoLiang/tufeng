@@ -15,7 +15,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     // 一级路由
     {
@@ -38,7 +38,7 @@ export default new Router({
         },
         {
           path: 'order',
-          component: () => import('/views/home/order.vue')
+          component: () => import('./views/home/order.vue')
         },
         {
           path: 'center',
@@ -55,6 +55,40 @@ export default new Router({
       path: '/detail/:id',
       name: 'detail',
       component: () => import('./views/detail/detail.vue')
+    },
+    // 一级路由 登入
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('./views/login/login.vue')
+    },
+    // 一级路由 注册
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('./views/register/register.vue')
+    },
+    // 一级路由 购物车
+    {
+      path: '/card',
+      name: 'card',
+      component: () => import('./views/card/card.vue'),
+      meta: {
+        needLogin: true // 用来控制是否需要登入验证
+      }
     }
   ]
 })
+
+// 设置全局导航守卫  实现登入拦截
+router.beforeEach((to, from, next) => {
+  let userInfo = window.localStorage.getItem('userInfo')
+  if (to.meta.needLogin && !userInfo) {
+    next('/login')
+  } else {
+    next()
+  }
+})
+
+// 暴露路由
+export default router
