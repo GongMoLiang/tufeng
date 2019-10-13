@@ -7,11 +7,14 @@ import router from './router'
 import './assets/styles/base.scss'
 
 // 按需引入vant ui 的组件路
-import { NavBar, Field, Button } from 'vant'
+import { NavBar, Field, Button, Search, DropdownMenu, DropdownItem } from 'vant'
 // 调用vant UI组件 直接 .use连缀调用
 Vue.use(NavBar)
   .use(Field)
   .use(Button)
+  .use(Search)
+  .use(DropdownMenu)
+  .use(DropdownItem)
 
 // 把控制台的那个提示关了
 Vue.config.productionTip = false

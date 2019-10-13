@@ -77,6 +77,7 @@ const router = new Router({
         needLogin: true // 用来控制是否需要登入验证
       }
     },
+    // 一级路由 收藏页面
     {
       path: '/collect',
       name: 'coolect',
@@ -84,6 +85,12 @@ const router = new Router({
       meta: {
         needLogin: true // 用来控制是否需要登入验证
       }
+    },
+    // 一级路由 旅游线路列表
+    {
+      path: '/line',
+      name: 'line',
+      component: () => import('./views/line/line.vue')
     }
   ]
 })
