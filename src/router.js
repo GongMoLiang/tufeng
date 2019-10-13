@@ -76,6 +76,14 @@ const router = new Router({
       meta: {
         needLogin: true // 用来控制是否需要登入验证
       }
+    },
+    {
+      path: '/collect',
+      name: 'coolect',
+      component: () => import('./views/collect/collect.vue'),
+      meta: {
+        needLogin: true // 用来控制是否需要登入验证
+      }
     }
   ]
 })
@@ -84,7 +92,13 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   let userInfo = window.localStorage.getItem('userInfo')
   if (to.meta.needLogin && !userInfo) {
-    next('/login')
+    // 携带路劲过去登入页面
+    next({
+      path: '/login',
+      query: {
+        redirect: to.fullPath
+      }
+    })
   } else {
     next()
   }

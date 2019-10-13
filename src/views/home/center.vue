@@ -6,7 +6,7 @@
         <img src="https://m.toursforfun.com/img/not-login.png" alt />
       </div>
       <div class="choice">
-        <router-link tag="span" to="/login">登入</router-link>/
+        <router-link tag="span" to="/login">登入</router-link>&nbsp;|&nbsp;
         <!-- <span>登入</span>/ -->
         <router-link tag="span" to="/register">注册</router-link>
         <!-- <span>注册</span> -->
@@ -19,9 +19,9 @@
       </li>
       <li>
         <span>0</span>
-        <span>收藏</span>
+        <span>优惠券</span>
       </li>
-      <li>
+      <li @click="goCollect">
         <span>0</span>
         <span>收藏</span>
       </li>
@@ -69,6 +69,10 @@ export default {
     //去购物车界面
     goCard() {
       this.$router.push('./card')
+    },
+    // 去收藏页面
+    goCollect() {
+      this.$router.push('./collect')
     }
   }
 }

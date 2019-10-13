@@ -9,7 +9,7 @@
           clearable
           label="用户名"
           right-icon="question-o"
-          placeholder="请输入用户名"
+          placeholder="请输入用户名或邮箱"
           @click-right-icon="$toast('question')"
         />
         <van-field v-model="password" type="password" label="密码" placeholder="请输入密码" required />
@@ -36,11 +36,19 @@ export default {
     }
   },
   methods: {
+    // 点击左边箭头返回到个人中心页面
     onClickLeft() {
       this.$router.push('./center')
     },
+    // 处理登入
     hangleLogin() {
+      // 登入成功后在localStoragec存用户信息
       window.localStorage.setItem('userInfo', JSON.stringify(this.userInfo))
+      // 从登入界面来的，登入成功后打回到个人中心页面
+      // 从导航卫生拦截过来的,登入成功打回到原来想去的页面
+      let path = this.$route.query.redirect || '/center'
+      // 这里不用push方法是为了当你登入完成后跳转的目标页面时，在点击浏览器历史记录的返回按钮，不在回到登入页面
+      this.$router.replace(path)
     }
   }
 }
