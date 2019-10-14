@@ -21,35 +21,35 @@
         <!-- 导航栏 -->
         <div class="nav-bar">
             <dl>
-                <dt><img src="../../assets/images/tufengjingpin.jpg"></dt>
+                <dt><img src="../../assets/images/ticket.png"></dt>
                 <dd>途风精品</dd>
             </dl>
              <dl>
-                <dt><img src="../../assets/images/duoriyou.jpg"></dt>
+                <dt><img src="../../assets/images/ticket.png"></dt>
                 <dd>多日游</dd>
             </dl>
              <dl>
-                <dt><img src="../../assets/images/yiriyou.jpg"></dt>
+                <dt><img src="../../assets/images/ticket.png"></dt>
                 <dd>一日游</dd>
             </dl>
              <dl>
-                <dt><img src="../../assets/images/dingzhilvxing.jpg"></dt>
+               <dt><img src="../../assets/images/ticket.png"></dt>
                 <dd>定制旅行</dd>
             </dl>
              <dl>
-                <dt><img src="../../assets/images/youlunyou.jpg"></dt>
+                <dt><img src="../../assets/images/ticket.png"></dt>
                 <dd>游轮游</dd>
             </dl>
              <dl>
-                <dt><img src="../../assets/images/piaowu.jpg"></dt>
+                <dt><img src="../../assets/images/ticket.png"></dt>
                 <dd>票务</dd>
             </dl>
              <dl>
-                <dt><img src="../../assets/images/qianzheng.jpg"></dt>
+               <dt><img src="../../assets/images/ticket.png"></dt>
                 <dd>签证</dd>
             </dl>
              <dl>
-                <dt><img src="../../assets/images/jiesong.jpg"></dt>
+                <dt><img src="../../assets/images/ticket.png"></dt>
                 <dd>接送</dd>
             </dl>
 

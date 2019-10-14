@@ -34,7 +34,7 @@ const router = new Router({
         },
         {
           path: 'find',
-          component: () => import('./views/home/dest.vue')
+          component: () => import('./views/home/find.vue')
         },
         {
           path: 'order',
@@ -91,6 +91,11 @@ const router = new Router({
       path: '/line',
       name: 'line',
       component: () => import('./views/line/line.vue')
+    },
+    {
+      path: '/city',
+      name: 'city',
+      component: () => import('./views/city/city.vue')
     }
   ]
 })
