@@ -12,7 +12,7 @@
         </div>
         <!-- 轮播图 -->
         <div class='slide-show'>
-            <van-swipe :autoplay="1000" indicator-color="white" >
+            <van-swipe :autoplay="2000" indicator-color="white" >
                 <van-swipe-item v-for="(image, index) in images" :key="index">
                     <img v-lazy="image" />
                 </van-swipe-item>
