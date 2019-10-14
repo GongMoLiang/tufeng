@@ -13,9 +13,11 @@
         <van-dropdown-item title="筛选" ref="item"></van-dropdown-item>
       </van-dropdown-menu>
     </div>
+    <linelist></linelist>
   </div>
 </template>
 <script>
+import linelist from '../../componets/linelist.vue'
 export default {
   data() {
     return {
@@ -29,6 +31,9 @@ export default {
         { text: '接送', value: 5 }
       ]
     }
+  },
+  components: {
+    linelist: linelist
   }
 }
 </script>
