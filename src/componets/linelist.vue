@@ -1,23 +1,22 @@
 <template>
   <!-- 旅游列表页组件 -->
   <ul class="line-list">
-    <li>
+    <li v-for="item in lineList" :key="item.id">
       <div class="left">
         <img
-          src="https://tffimg.tff.bz/80/c5/ff3/8c5/1240a581bf9b4db456109c.jpg?imageView2/1/w/990/h/660/q/75/format/jpg"
+          :src="item.image"
           alt
         />
       </div>
       <dl class="right">
-        <dt>[8天]【洛杉矶进出小团】美西国家公园8日慢游：好莱坞环球影城+世界奇观羚羊彩穴+鬼斧神工大峡谷+锡安国家公园+布莱斯国家公园+马蹄湾+棕榈泉购物+洛杉矶+拉斯维加斯</dt>
+        <dt>{{item.name}}</dt>
         <dd class="tag">
-          <span>赠送保险</span>
           <span>赠送保险</span>
         </dd>
         <dd class="data">
-          <div class="num">72人出游</div>
+          <div class="num">{{ item.order_count }}人出游</div>
           <div class="money">
-            <span>￥9871</span>起
+            <span>￥{{ item.default_price*7}}</span>起
           </div>
         </dd>
       </dl>
@@ -25,11 +24,19 @@
   </ul>
 </template>
 <script>
+
+import {mapState , mapActions } from 'vuex'
 export default {
-  //   name: linelist
-  mounted() {
-    console.log()
-  }
+  name: 'linelist',
+  computed:{
+    ...mapState('linelist',['lineList'])
+  },
+ methods: {
+    ...mapActions('linelist',['getlineList'])
+  },
+  created() {
+      this.getlineList()
+  },
 }
 </script>
 <style lang="scss">
