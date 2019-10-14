@@ -6,12 +6,12 @@
     <div class="box">
       <van-cell-group>
         <van-field v-model="username" required clearable label="用户名" placeholder="请输入用户名" />
-        <van-field v-model="username" required clearable label="邮箱" placeholder="请输入邮箱" />
+        <van-field v-model="email" required clearable label="邮箱" placeholder="请输入邮箱" />
         <van-field v-model="password" type="password" label="密码" placeholder="请输入密码" required />
       </van-cell-group>
     </div>
     <div class="btn">
-      <van-button type="primary" size="large" @click="hangleLogin">注&emsp;册</van-button>
+      <van-button type="primary" size="large" @click="hangleRegister">注&emsp;册</van-button>
       <div class="bottom">
         <span>已有账号,点此</span>
         <router-link to="/login" tag="span">登入</router-link>
