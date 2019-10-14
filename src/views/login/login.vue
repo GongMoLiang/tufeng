@@ -27,7 +27,7 @@
 <script>
 import { userInfo } from 'os'
 export default {
-  data() {
+  data () {
     return {
       userInfo: {
         userName: '张三',
@@ -37,11 +37,11 @@ export default {
   },
   methods: {
     // 点击左边箭头返回到个人中心页面
-    onClickLeft() {
+    onClickLeft () {
       this.$router.push('./center')
     },
     // 处理登入
-    hangleLogin() {
+    hangleLogin () {
       // 登入成功后在localStoragec存用户信息
       window.localStorage.setItem('userInfo', JSON.stringify(this.userInfo))
       // 从登入界面来的，登入成功后打回到个人中心页面
