@@ -229,6 +229,7 @@ export default {
                 }
                 p {
                     color:white;
+                    font-size:14px;
                     width:100%;
                     line-height:37px;
                     position:absolute;

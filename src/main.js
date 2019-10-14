@@ -18,7 +18,6 @@ Vue.use(NavBar)
   .use(Lazyload)
   .use(Swipe)
   .use(SwipeItem)
-
 // 把控制台的那个提示关了
 Vue.config.productionTip = false
 
