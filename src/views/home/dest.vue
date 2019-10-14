@@ -112,8 +112,146 @@
               <div class="product-img">
                 <img src="../../assets/images/0243566ed0eee08a010b99.jpg" alt />
               </div>
-              <div class="product-info"></div>
+              <div class="product-info">
+                <div
+                  class="product-name"
+                >【美国国家旅游局推荐】(7天)浪漫观景火车·海岸星光号:西雅图+旧金山·海岸星光号观景火车+伯尼瀑布+日晷桥+红木森林火车+西峡/南峡/羚羊峡谷+旧金山市区游</div>
+                <div class="price-wrap">
+                  <div class="price">
+                    <span class="price-value">
+                      ￥3319
+                      <span class="price-qi">起</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
+            <div class="tour-product">
+              <div class="product-img">
+                <img src="../../assets/images/0243566ed0eee08a010b99.jpg" alt />
+              </div>
+              <div class="product-info">
+                <div
+                  class="product-name"
+                >【美国国家旅游局推荐】(7天)浪漫观景火车·海岸星光号:西雅图+旧金山·海岸星光号观景火车+伯尼瀑布+日晷桥+红木森林火车+西峡/南峡/羚羊峡谷+旧金山市区游</div>
+                <div class="price-wrap">
+                  <div class="price">
+                    <span class="price-value">
+                      ￥3319
+                      <span class="price-qi">起</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tour-product">
+              <div class="product-img">
+                <img src="../../assets/images/0243566ed0eee08a010b99.jpg" alt />
+              </div>
+              <div class="product-info">
+                <div
+                  class="product-name"
+                >【美国国家旅游局推荐】(7天)浪漫观景火车·海岸星光号:西雅图+旧金山·海岸星光号观景火车+伯尼瀑布+日晷桥+红木森林火车+西峡/南峡/羚羊峡谷+旧金山市区游</div>
+                <div class="price-wrap">
+                  <div class="price">
+                    <span class="price-value">
+                      ￥3319
+                      <span class="price-qi">起</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tour-product">
+              <div class="product-img">
+                <img src="../../assets/images/0243566ed0eee08a010b99.jpg" alt />
+              </div>
+              <div class="product-info">
+                <div
+                  class="product-name"
+                >【美国国家旅游局推荐】(7天)浪漫观景火车·海岸星光号:西雅图+旧金山·海岸星光号观景火车+伯尼瀑布+日晷桥+红木森林火车+西峡/南峡/羚羊峡谷+旧金山市区游</div>
+                <div class="price-wrap">
+                  <div class="price">
+                    <span class="price-value">
+                      ￥3319
+                      <span class="price-qi">起</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="all">显示所有的跟团游</span>
+          </div>
+          <span></span>
+        </div>
+        <div class="local-sales">
+          <h2>当地玩乐销量榜</h2>
+          <div class="content">
+            <div class="local-product">
+              <div class="product-img">
+                <img src="../../assets/images/2cd5e949c7ddcb9eee5ed0.jpg" alt />
+              </div>
+              <div class="product-info">
+                <div class="product-name">【电子票】美国自然历史博物馆(American Museum of Natural History)</div>
+                <div class="price-wrap">
+                  <div class="price">
+                    <span class="price-value">
+                      ￥93
+                      <span class="price-qi">起</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="local-product">
+              <div class="product-img">
+                <img src="../../assets/images/2cd5e949c7ddcb9eee5ed0.jpg" alt />
+              </div>
+              <div class="product-info">
+                <div class="product-name">【电子票】美国自然历史博物馆(American Museum of Natural History)</div>
+                <div class="price-wrap">
+                  <div class="price">
+                    <span class="price-value">
+                      ￥93
+                      <span class="price-qi">起</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="local-product">
+              <div class="product-img">
+                <img src="../../assets/images/2cd5e949c7ddcb9eee5ed0.jpg" alt />
+              </div>
+              <div class="product-info">
+                <div class="product-name">【电子票】美国自然历史博物馆(American Museum of Natural History)</div>
+                <div class="price-wrap">
+                  <div class="price">
+                    <span class="price-value">
+                      ￥93
+                      <span class="price-qi">起</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="local-product">
+              <div class="product-img">
+                <img src="../../assets/images/2cd5e949c7ddcb9eee5ed0.jpg" alt />
+              </div>
+              <div class="product-info">
+                <div class="product-name">【电子票】美国自然历史博物馆(American Museum of Natural History)</div>
+                <div class="price-wrap">
+                  <div class="price">
+                    <span class="price-value">
+                      ￥93
+                      <span class="price-qi">起</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="all">显示所有当地玩乐</span>
           </div>
           <span></span>
         </div>
@@ -219,15 +357,21 @@ h2 {
     padding: 24px;
 
     .product-type {
+      .slider::-webkit-scrollbar {
+        display: none;
+      }
       .slider {
+        flex: 1;
+        overflow-x: auto;
         ul {
           //   justify-content: space-between;
           overflow: hidden;
           display: flex;
-          width: 100%;
-          padding: 0 8px;
+          //   width: 100%;
+          //   padding: 0 8px;
           //   margin-bottom: 38px;
-          box-sizing: border-box;
+          //   box-sizing: border-box;
+          width: 732px;
 
           li {
             width: 73.5px;
@@ -386,17 +530,156 @@ h2 {
 
         .product-img {
           width: 100%;
-          min-height: 56vw;
+          //   min-height: 56vw;
           border-radius: 4px;
           position: relative;
           overflow: hidden;
 
           img {
-            width: 100%;
             min-height: 16vh;
+            width: 100%;
             height: 16vh;
           }
         }
+        .product-info {
+          height: 105px;
+          padding-bottom: 10px;
+          overflow: hidden;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+
+          .product-name {
+            // height: 40px;
+            line-height: 20px;
+            padding: 0 10px;
+            margin: 10px 0;
+            word-break: break-all;
+            font-size: 15px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            font-weight: 700;
+          }
+          .price-wrap {
+            font: 12px;
+            color: #363636;
+
+            .price {
+              font-size: 12px;
+              text-align: right;
+              color: #fb5f10;
+              display: block;
+
+              .price-value {
+                font-size: 20px;
+                font-weight: bold;
+
+                .price-qi {
+                  color: #363636;
+                  font-size: 13px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .all {
+        display: block;
+        width: 100%;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #0090f2;
+        border-radius: 4px;
+        color: #0090f2;
+      }
+    }
+  }
+  .local-sales {
+    padding-bottom: 26px;
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .local-product {
+        width: 47%;
+        padding: 0;
+        box-shadow: 0 2px 10px #e8e0e0;
+        border-radius: 4px;
+        margin-bottom: 22px;
+
+        .product-img {
+          width: 100%;
+          //   min-height: 56vw;
+          border-radius: 4px;
+          position: relative;
+          overflow: hidden;
+
+          img {
+            min-height: 16vh;
+            width: 100%;
+            height: 16vh;
+          }
+        }
+        .product-info {
+          height: 105px;
+          padding-bottom: 10px;
+          overflow: hidden;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+
+          .product-name {
+            // height: 40px;
+            line-height: 20px;
+            padding: 0 10px;
+            margin: 10px 0;
+            word-break: break-all;
+            font-size: 15px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            font-weight: 700;
+          }
+          .price-wrap {
+            font: 12px;
+            color: #363636;
+
+            .price {
+              font-size: 12px;
+              text-align: right;
+              color: #fb5f10;
+              display: block;
+
+              .price-value {
+                font-size: 20px;
+                font-weight: bold;
+
+                .price-qi {
+                  color: #363636;
+                  font-size: 13px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .all {
+        display: block;
+        width: 100%;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #0090f2;
+        border-radius: 4px;
+        color: #0090f2;
       }
     }
   }
