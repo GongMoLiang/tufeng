@@ -17,7 +17,7 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       value: 0,
       option: [
