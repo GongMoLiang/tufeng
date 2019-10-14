@@ -46,6 +46,7 @@ const router = new Router({
         },
         {
           path: '',
+          name: 'moren',
           redirect: 'index'
         }
       ]
@@ -100,6 +101,7 @@ router.beforeEach((to, from, next) => {
   let userInfo = window.localStorage.getItem('userInfo')
   if (to.meta.needLogin && !userInfo) {
     // 携带路劲过去登入页面
+    alert('你还没有登入，请先登入账号')
     next({
       path: '/login',
       query: {
