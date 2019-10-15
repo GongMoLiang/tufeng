@@ -41,7 +41,7 @@ export default {
     },
     // 处理登入
     hangleLogin() {
-      console.log(1)
+      // console.log(1)
       axios
         .post('http://localhost:3000/api/login', {
           email: this.email,

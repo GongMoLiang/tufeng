@@ -1,7 +1,7 @@
 <template>
   <!-- 旅游列表页组件 -->
   <ul class="line-list">
-    <li v-for="item in lineList" :key="item.id" @click="goDetail(item.id)">
+    <li v-for="item in lineList" :key="item.id_new" @click="goDetail(item.id._new)">
       <div class="left">
         <img :src="item.image" alt />
       </div>
