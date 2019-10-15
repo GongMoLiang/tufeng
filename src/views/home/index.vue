@@ -2,8 +2,8 @@
     <div class="box">
         <!-- 轮播图 -->
         <van-swipe class="slide-show" :autoplay="3000" indicator-color="white" >
-            <van-swipe-item v-for="(image, index) in images" :key="index">
-                <img v-lazy="image" />
+            <van-swipe-item v-for="image in imagesList" :key="image.id">
+                <img v-lazy="image.picture" />
             </van-swipe-item>
         </van-swipe>
 
@@ -65,30 +65,17 @@
             <h2>热门目的地</h2>
             <div class="assit-box">
                 <ul>
-                <li>
-                    <img src="//cdn.tff.bz/f1/88/d1/20171225072550041698513.jpg?imageView2/1/w/208/h/276/q/100/format/jpg">
-                    <p>纽约</p>
-                </li>
-                <li>
-                    <img src="//cdn.tff.bz/f2/26/f5/shutterstock_1350766547.jpg?imageView2/1/w/208/h/276/q/100/format/jpg">
-                    <p>加拿大赏枫</p>
-                </li>
-                <li>
-                    <img src="//cdn.tff.bz/f2/e3/bc/1422994934641.png?imageView2/1/w/208/h/276/q/100/format/jpg">
-                    <p>班芙公园</p>
-                </li>
-                 <li>
-                    <img src="//cdn.tff.bz/f1/1e/3d/shutterstock_98530712.jpg?imageView2/1/w/208/h/276/q/100/format/jpg">
-                    <p>新西兰</p>
-                </li>
-            </ul>
+                    <li v-for="item in destinaList" :key="item.id">
+                        <img :src="item.image"/>
+                        <p>{{ item.title }}</p>
+                    </li>
+               </ul>
             </div>
-
         </div>
 
         <!-- 优惠专区图片 -->
         <div class="on-sale">
-            <img src="//cdn.tff.bz/f2/windtour/e0/fb/banner-%E4%BC%98%E6%83%A0%E4%B8%93%E5%8C%BA.jpg?imageView2/1/w/664/h/316/q/85/format/jpg" alt="">
+            <img :src="onSalePic" alt="">
         </div>
 
         <!-- 新品上线 -->
@@ -98,15 +85,10 @@
                 <span>查看更多></span>
             </div>
             <ul>
-                <li class="left-pic">
-                    <img src="//cdn.tff.bz/public/wt/c2/0d/20190619072202890932693.jpg?imageView2/1/w/660/h/440/q/75/format/jpg">
-                    <h3>【途风微旅行 主题乐园自由行】（4天3夜）加州5大乐园联玩套餐（含酒店）：迪士尼2日+入住迪士尼周边酒店+免费接送入园，环球影城、圣地亚哥海洋世界/乐高乐园</h3>
-                    <p>￥1013<span>起</span></p>
-                </li>
-                <li>
-                    <img src="//cdn.tff.bz/f2/windtour/ce/7b/873638897_0607ZY_2125MS.jpg?imageView2/1/w/660/h/440/q/75/format/jpg">
-                    <h3>【途风微旅行 主题乐园自由行】（4天3夜）加州5大乐园联玩套餐（含酒店）：迪士尼2日+入住迪士尼周边酒店+免费接送入园，环球影城、圣地亚哥海洋世界/乐高乐园</h3>
-                    <p>￥888<span>起</span></p>
+                <li v-for="newOn in newlineList" :key="newOn.id">
+                    <img :src="newOn.image">
+                    <h3>{{ newOn.name }}</h3>
+                    <p>￥{{ newOn.origin_price*7}}<span>起</span></p>
                 </li>
             </ul>
         </div>
@@ -114,19 +96,29 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'home',
-  data() {
+  data () {
     return {
-      images: [
-        'https://cdn.tff.bz/f2/8c/f8/APP端banner.jpg?imageView2/1/w/750/h/562/q/90/format/jpg',
-        'https://cdn.tff.bz/f1/53/2d/baibianmeixi1080809.jpg?imageView2/1/w/750/h/562/q/90/format/jpg',
-        'https://cdn.tff.bz/f2/67/1c/1080809-模板MOBAN.jpg?imageView2/1/w/750/h/562/q/90/format/jpg',
-        'https://cdn.tff.bz/f1/b6/9b/1080809-模板.jpg?imageView2/1/w/750/h/562/q/90/format/jpg',
-        'https://cdn.tff.bz/f2/a4/a7/1080x809-190918.jpg?imageView2/1/w/750/h/562/q/90/format/jpg'
-
-      ]
+      imagesList: [], // 轮播图列表
+      destinaList: [], // 热门目的地列表
+      newlineList: [], // 新品上线列表
+      onSalePic: String// 优惠专区图片
     }
+  },
+  created () {
+    axios.get('https://app.toursforfun.com/api/homepage/banner/v1.5.0').then(response => {
+      let result = response.data.data
+      this.imagesList = result.link
+      this.destinaList = result.hot_destination
+    }),
+    axios.get('https://app.toursforfun.com/api/homepage/product/new_discount').then(response => {
+      let consult = response.data.data
+      this.onSalePic = consult.discount.image
+      this.newlineList = consult.new_product.list
+      console.log(this.newlineList)
+    })
   }
 }
 </script>
@@ -218,8 +210,9 @@ export default {
         .assit-box{
              flex:1;
              overflow-x:auto;
+             white-space: nowrap;
             ul{
-            width:500px;
+            width:920px;
             li{
                 float:left;
                 margin-right:10px;
@@ -270,18 +263,16 @@ export default {
         }
         ul{
             display:flex;
-            justify-content: space-around;
+            justify-content: space-between;
             li{
-                flex:1;
+                width:46%;
                 border-radius:4px;
                 box-shadow: 0 2px 10px #e8e0e0;
                 img{
                     width:100%;
+                    height:109px;
                     border-radius:4px 4px 0 0;
                 }
-            }
-            .left-pic{
-                margin-right:20px;
             }
             h3 {
                 font-size: 15px;
@@ -303,7 +294,6 @@ export default {
                 padding-bottom:10px;
                 span {
                     font-size:14px;
-                    color:#363636;
                     font-weight: normal;
                     margin-left:5px;
                 }

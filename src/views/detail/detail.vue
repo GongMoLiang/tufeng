@@ -124,16 +124,16 @@
 </template>
 <script>
 export default {
-    data() {
-        return {
-            current: 0,
-            activeName: '1'
-        }
-    },
-    methods: {
-        onChange(index) {
-        this.current = index;
-        }
+  data () {
+    return {
+      current: 0,
+      activeName: '1'
+    }
+  },
+  methods: {
+    onChange (index) {
+      this.current = index
+    }
   }
 }
 </script>

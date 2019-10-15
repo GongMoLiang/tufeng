@@ -25,18 +25,18 @@
 </template>
 <script>
 
-import {mapState , mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'linelist',
-  computed:{
-    ...mapState('linelist',['lineList'])
+  computed: {
+    ...mapState('linelist', ['lineList'])
   },
- methods: {
-    ...mapActions('linelist',['getlineList'])
+  methods: {
+    ...mapActions('linelist', ['getlineList'])
   },
-  created() {
-      this.getlineList()
-  },
+  created () {
+    this.getlineList()
+  }
 }
 </script>
 <style lang="scss">

@@ -36,8 +36,8 @@ export default {
   name: 'City',
 
   methods: {
-    //返回上一页
-    goBack() {
+    // 返回上一页
+    goBack () {
       this.$router.back()
     }
   }

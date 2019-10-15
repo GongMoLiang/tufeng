@@ -23,7 +23,7 @@
 import axios from 'axios'
 export default {
   name: 'register',
-  data() {
+  data () {
     return {
       username: '',
       email: '',
@@ -35,7 +35,7 @@ export default {
     onClickLeft () {
       this.$router.push('./center')
     },
-    hangleRegister() {
+    hangleRegister () {
       axios
         .post('http://localhost:3000/api/register', {
           username: this.username,

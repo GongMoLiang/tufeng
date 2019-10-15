@@ -17,19 +17,19 @@
 <script>
 import axios from 'axios'
 export default {
-  data() {
+  data () {
     return {
       citylist: []
     }
   },
   methods: {
-    fn(e) {
+    fn (e) {
       let arr = document.getElementsByClassName('left')[0]
 
       // console.log(e.currentTarget.className)
     }
   },
-  created() {
+  created () {
     axios
       .get('https://app.toursforfun.com//api/article/menu')
       .then(Response => {

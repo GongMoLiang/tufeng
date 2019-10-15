@@ -8,7 +8,7 @@ import store from './store/store.js'
 import './assets/styles/base.scss'
 
 // 按需引入vant ui 的组件路
-import { NavBar, Field, Button, Search, DropdownMenu, DropdownItem, Lazyload, Swipe, SwipeItem, Tag, Collapse, CollapseItem} from 'vant'
+import { NavBar, Field, Button, Search, DropdownMenu, DropdownItem, Lazyload, Swipe, SwipeItem, Tag, Collapse, CollapseItem } from 'vant'
 // 调用vant UI组件 直接 .use连缀调用
 Vue.use(NavBar)
   .use(Field)

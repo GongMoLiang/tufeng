@@ -66,7 +66,7 @@
 <script>
 export default {
   name: 'center',
-  data() {
+  data () {
     return {
       username: window.localStorage.getItem(JSON.parse('userInfo').username)
     }
