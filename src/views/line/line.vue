@@ -2,7 +2,7 @@
   <!-- 这是旅游列表页面 -->
   <div class="page-line">
     <div class="detial-serch">
-      <span class="iconfont icon-fanhui"></span>
+      <span class="iconfont icon-fanhui" @click="backHome"></span>
       <van-search placeholder="请输入搜索关键词" v-model="value2" shape="round" />
     </div>
     <div>
@@ -19,7 +19,7 @@
 <script>
 import linelist from '../../componets/linelist.vue'
 export default {
-  data () {
+  data() {
     return {
       value: 0,
       option: [
@@ -34,6 +34,11 @@ export default {
   },
   components: {
     linelist: linelist
+  },
+  methods: {
+    backHome() {
+      this.$router.push('/index')
+    }
   }
 }
 </script>

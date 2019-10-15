@@ -11,7 +11,7 @@
         >{{ item.name }}</li>
       </ul>
       <ul class="right">
-        <li v-for="item in destlist" :key="item.id">{{item.name}}</li>
+        <li v-for="item in destlist" :key="item.id" @click="goLine">{{item.name}}</li>
         <!-- <li>纽约</li>
         <li>纽约</li>
         <li>纽约</li>-->
@@ -39,6 +39,9 @@ export default {
   methods: {
     fn(e) {
       this.id = e
+    },
+    goLine() {
+      this.$router.push('/line')
     }
   },
   created() {
