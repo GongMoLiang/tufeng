@@ -138,7 +138,6 @@ export default {
 }
 </script>
 
-</script>
 <style lang="scss" scoped>
     .page-detail{
         width:100%;

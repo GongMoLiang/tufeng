@@ -6,10 +6,16 @@
         <img src="https://m.toursforfun.com/img/not-login.png" alt />
       </div>
       <div class="choice">
-        <router-link tag="span" to="/login">登入</router-link>&nbsp;|&nbsp;
-        <!-- <span>登入</span>/ -->
-        <router-link tag="span" to="/register">注册</router-link>
-        <!-- <span>注册</span> -->
+        <div v-if="!username">
+          <router-link tag="span" to="/login">登入</router-link>&nbsp;|&nbsp;
+          <!-- <span>登入</span>/ -->
+          <router-link tag="span" to="/register">注册</router-link>
+          <!-- <span>注册</span> -->
+        </div>
+        <div v-else>
+          <span>hello</span>
+          <span class="name">{{ username}}</span>
+        </div>
       </div>
     </div>
     <ul class="login-list">
@@ -68,16 +74,16 @@ export default {
   name: 'center',
   data () {
     return {
-      username: window.localStorage.getItem(JSON.parse('userInfo').username)
+      username: JSON.parse(window.localStorage.getItem('userInfo')).username
     }
   },
   methods: {
     // 去购物车界面
-    goCard () {
+    goCard() {
       this.$router.push('./card')
     },
     // 去收藏页面
-    goCollect () {
+    goCollect() {
       this.$router.push('./collect')
     }
   }
@@ -111,6 +117,9 @@ export default {
       font-weight: bold;
       align-items: center;
       padding-left: 20px;
+      .name {
+        color: #ff6700;
+      }
     }
   }
 
