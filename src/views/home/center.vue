@@ -65,6 +65,12 @@
 </template>
 <script>
 export default {
+  name: 'center',
+  data() {
+    return {
+      username: window.localStorage.getItem(JSON.parse('userInfo').username)
+    }
+  },
   methods: {
     //去购物车界面
     goCard() {

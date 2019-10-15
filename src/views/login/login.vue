@@ -4,12 +4,12 @@
     <div class="box">
       <van-cell-group>
         <van-field
-          v-model="username"
+          v-model="email"
           required
           clearable
-          label="用户名"
+          label="邮箱"
           right-icon="question-o"
-          placeholder="请输入用户名或邮箱"
+          placeholder="请输入邮箱"
           @click-right-icon="$toast('question')"
         />
         <van-field v-model="password" type="password" label="密码" placeholder="请输入密码" required />
@@ -25,14 +25,13 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 import { userInfo } from 'os'
 export default {
   data() {
     return {
-      userInfo: {
-        userName: '张三',
-        age: '18'
-      }
+      email: '',
+      password: ''
     }
   },
   methods: {
@@ -42,13 +41,29 @@ export default {
     },
     // 处理登入
     hangleLogin() {
-      // 登入成功后在localStoragec存用户信息
-      window.localStorage.setItem('userInfo', JSON.stringify(this.userInfo))
-      // 从登入界面来的，登入成功后打回到个人中心页面
-      // 从导航卫生拦截过来的,登入成功打回到原来想去的页面
-      let path = this.$route.query.redirect || '/center'
-      // 这里不用push方法是为了当你登入完成后跳转的目标页面时，在点击浏览器历史记录的返回按钮，不在回到登入页面
-      this.$router.replace(path)
+      console.log(1)
+      axios
+        .post('http://localhost:3000/api/login', {
+          email: this.email,
+          password: this.password
+        })
+        .then(Response => {
+          if (Response.data.code == 0) {
+            alert(Response.data.msg)
+            // 登入成功后在localStoragec存用户信息
+            window.localStorage.setItem(
+              'userInfo',
+              JSON.stringify(Response.data.userInfo)
+            )
+            // 从登入界面来的，登入成功后打回到个人中心页面
+            // 从导航卫生拦截过来的,登入成功打回到原来想去的页面
+            // 这里不用push方法是为了当你登入完成后跳转的目标页面时，在点击浏览器历史记录的返回按钮，不在回到登入页面
+            let path = this.$route.query.redirect || '/center'
+            this.$router.replace(path)
+          } else {
+            alert(Response.data.msg)
+          }
+        })
     }
   }
 }
@@ -77,3 +92,4 @@ export default {
   }
 }
 </style>
+{"avatar":"http//localhost:3000/image/hello.jpg","_id":"5d84b1030397f8dc88abaf83","username":"诸葛亮","password":"$2a$10$L8Q6xc5mjpRpRz7RqhQ6FOB/92FXLpQHeX9qtcjPqgws/PQyPLoPi","__v":0}
