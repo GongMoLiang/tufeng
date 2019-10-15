@@ -364,7 +364,7 @@ h2 {
         flex: 1;
         overflow-x: auto;
         ul {
-          //   justify-content: space-between;
+          // justify-content: space-between;
           overflow: hidden;
           display: flex;
           //   width: 100%;
