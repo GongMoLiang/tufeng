@@ -18,6 +18,7 @@ import {
   Lazyload,
   Swipe,
   SwipeItem,
+  Popup,
   Tab,
   Tabs,
   ActionSheet
@@ -35,6 +36,7 @@ Vue.use(NavBar)
   .use(Tab)
   .use(Tabs)
   .use(ActionSheet)
+  .use(Popup)
 // 把控制台的那个提示关了
 Vue.config.productionTip = false
 
