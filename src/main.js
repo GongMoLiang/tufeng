@@ -33,10 +33,17 @@ Vue.use(NavBar)
   .use(Lazyload)
   .use(Swipe)
   .use(SwipeItem)
+<<<<<<< HEAD
+  .use(Tag)
+  .use(Collapse)
+  .use(CollapseItem)
+
+=======
   .use(Tab)
   .use(Tabs)
   .use(ActionSheet)
   .use(Popup)
+>>>>>>> b129e3534016e8b1e98a953df1235c67bf8cfe3f
 // 把控制台的那个提示关了
 Vue.config.productionTip = false
 

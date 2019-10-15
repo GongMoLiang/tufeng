@@ -22,7 +22,7 @@
 <script>
 import axios from 'axios'
 export default {
-  data() {
+  data () {
     return {
       citylist: [],
       id: 51
@@ -50,7 +50,7 @@ export default {
       })
     }
   },
-  created() {
+  created () {
     axios
       .get('https://app.toursforfun.com//api/article/menu')
       .then(Response => {
