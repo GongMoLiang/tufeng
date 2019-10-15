@@ -92,7 +92,3 @@ export default {
   }
 }
 </style>
-<<<<<<< HEAD
-{"avatar":"http//localhost:3000/image/hello.jpg","_id":"5d84b1030397f8dc88abaf83","username":"诸葛亮","password":"$2a$10$L8Q6xc5mjpRpRz7RqhQ6FOB/92FXLpQHeX9qtcjPqgws/PQyPLoPi","__v":0}
-=======
->>>>>>> 599e191c7615df4b868a6aaeb871a3449a941b5d
