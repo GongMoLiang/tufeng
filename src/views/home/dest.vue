@@ -9,14 +9,15 @@
       </a>
       <div class="city-container">
         <div class="city">
-          <h1>美国</h1>
+          <h1>{{ destination.name }}</h1>
           <i class="iconfont icon-xialajiantou"></i>
         </div>
-        <span class="tag">冬季国家公园</span>
+        <span class="tag">{{ destination.tag }}</span>
       </div>
     </div>
     <div class="dest-info-box">
       <div class="dset-info-container">
+        <!-- 产品分类 -->
         <div class="product-type">
           <h2>产品分类</h2>
           <div class="slider">
@@ -54,27 +55,22 @@
             </div>
           </div>
         </div>
+        <!-- 热门推荐 -->
         <div class="hot-recommend">
           <h2>热门推荐</h2>
           <div class="content">
-            <div class="single-hot">
-              <img src="../../assets/images/72db4170ef9561f283a2cb.jpg" alt />
-              <span>冬季黄石别样美</span>
-            </div>
-            <div class="single-hot" style="margin-right:0px;margin-bottom:4%;">
-              <img src="../../assets/images/72db4170ef9561f283a2cb.jpg" alt />
-              <span>冬季黄石别样美</span>
-            </div>
-            <div class="single-hot">
-              <img src="../../assets/images/72db4170ef9561f283a2cb.jpg" alt />
-              <span>冬季黄石别样美</span>
-            </div>
-            <div class="single-hot" style="margin-right:0px;margin-bottom:4%;">
-              <img src="../../assets/images/72db4170ef9561f283a2cb.jpg" alt />
-              <span>冬季黄石别样美</span>
+            <div
+              class="single-hot"
+              v-for="item in recommendList"
+              :key="item.id"
+              @click="go(item.id)"
+            >
+              <img :src="item.image_url" alt />
+              <span>{{ item.title }}</span>
             </div>
           </div>
         </div>
+        <!-- 必去景点 -->
         <div class="attractions">
           <div class="header">
             <h2>必去景点</h2>
@@ -84,11 +80,15 @@
             </span>
           </div>
           <div class="attractions-content">
-            <div class="single-attractions">
-              <img src="../../assets/images/lincoln_memorial_washington_dc.jpg" alt />
-              <span>林肯纪念堂</span>
+            <div class="single-attractions" v-for="item in hotList" :key="item.tour_city_id">
+              <img
+                src="https://toursforfun.tff.bz/images/lincoln_memorial_washington_dc.jpg?imageView2/1/w/154/h/188/q/80/format/jpg"
+                alt
+              />
+              <span>{{ item.name }}</span>
             </div>
-            <div class="single-attractions">
+            <!-- "lincoln_memorial_washington_dc.jpg" -->
+            <!-- <div class="single-attractions">
               <img src="../../assets/images/lincoln_memorial_washington_dc.jpg" alt />
               <span>林肯纪念堂</span>
             </div>
@@ -99,81 +99,27 @@
             <div class="single-attractions" style="margin-right:0px;">
               <img src="../../assets/images/lincoln_memorial_washington_dc.jpg" alt />
               <span>林肯纪念堂</span>
-            </div>
+            </div>-->
           </div>
         </div>
+        <!-- 优惠专区 -->
         <div class="discount">
           <img src="../../assets/images/banner-优惠专区.jpg" alt />
         </div>
+        <!-- 跟团游热销榜 -->
         <div class="tour-sales">
           <h2>跟团游销量榜</h2>
           <div class="content">
-            <div class="tour-product">
+            <div class="tour-product" v-for="item in tourList" :key="item.id">
               <div class="product-img">
-                <img src="../../assets/images/0243566ed0eee08a010b99.jpg" alt />
+                <img :src="item.image" alt />
               </div>
               <div class="product-info">
-                <div
-                  class="product-name"
-                >【美国国家旅游局推荐】(7天)浪漫观景火车·海岸星光号:西雅图+旧金山·海岸星光号观景火车+伯尼瀑布+日晷桥+红木森林火车+西峡/南峡/羚羊峡谷+旧金山市区游</div>
+                <div class="product-name">{{ item.name }}</div>
                 <div class="price-wrap">
                   <div class="price">
                     <span class="price-value">
-                      ￥3319
-                      <span class="price-qi">起</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="tour-product">
-              <div class="product-img">
-                <img src="../../assets/images/0243566ed0eee08a010b99.jpg" alt />
-              </div>
-              <div class="product-info">
-                <div
-                  class="product-name"
-                >【美国国家旅游局推荐】(7天)浪漫观景火车·海岸星光号:西雅图+旧金山·海岸星光号观景火车+伯尼瀑布+日晷桥+红木森林火车+西峡/南峡/羚羊峡谷+旧金山市区游</div>
-                <div class="price-wrap">
-                  <div class="price">
-                    <span class="price-value">
-                      ￥3319
-                      <span class="price-qi">起</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="tour-product">
-              <div class="product-img">
-                <img src="../../assets/images/0243566ed0eee08a010b99.jpg" alt />
-              </div>
-              <div class="product-info">
-                <div
-                  class="product-name"
-                >【美国国家旅游局推荐】(7天)浪漫观景火车·海岸星光号:西雅图+旧金山·海岸星光号观景火车+伯尼瀑布+日晷桥+红木森林火车+西峡/南峡/羚羊峡谷+旧金山市区游</div>
-                <div class="price-wrap">
-                  <div class="price">
-                    <span class="price-value">
-                      ￥3319
-                      <span class="price-qi">起</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="tour-product">
-              <div class="product-img">
-                <img src="../../assets/images/0243566ed0eee08a010b99.jpg" alt />
-              </div>
-              <div class="product-info">
-                <div
-                  class="product-name"
-                >【美国国家旅游局推荐】(7天)浪漫观景火车·海岸星光号:西雅图+旧金山·海岸星光号观景火车+伯尼瀑布+日晷桥+红木森林火车+西峡/南峡/羚羊峡谷+旧金山市区游</div>
-                <div class="price-wrap">
-                  <div class="price">
-                    <span class="price-value">
-                      ￥3319
+                      ￥{{ item.default_price*7}}
                       <span class="price-qi">起</span>
                     </span>
                   </div>
@@ -184,67 +130,20 @@
           </div>
           <span></span>
         </div>
+        <!-- 当地玩乐销量榜 -->
         <div class="local-sales">
           <h2>当地玩乐销量榜</h2>
           <div class="content">
-            <div class="local-product">
+            <div class="local-product" v-for="item in localList" :key="item.id">
               <div class="product-img">
-                <img src="../../assets/images/2cd5e949c7ddcb9eee5ed0.jpg" alt />
+                <img :src="item.image" alt />
               </div>
               <div class="product-info">
-                <div class="product-name">【电子票】美国自然历史博物馆(American Museum of Natural History)</div>
+                <div class="product-name">{{ item.name }}</div>
                 <div class="price-wrap">
                   <div class="price">
                     <span class="price-value">
-                      ￥93
-                      <span class="price-qi">起</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="local-product">
-              <div class="product-img">
-                <img src="../../assets/images/2cd5e949c7ddcb9eee5ed0.jpg" alt />
-              </div>
-              <div class="product-info">
-                <div class="product-name">【电子票】美国自然历史博物馆(American Museum of Natural History)</div>
-                <div class="price-wrap">
-                  <div class="price">
-                    <span class="price-value">
-                      ￥93
-                      <span class="price-qi">起</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="local-product">
-              <div class="product-img">
-                <img src="../../assets/images/2cd5e949c7ddcb9eee5ed0.jpg" alt />
-              </div>
-              <div class="product-info">
-                <div class="product-name">【电子票】美国自然历史博物馆(American Museum of Natural History)</div>
-                <div class="price-wrap">
-                  <div class="price">
-                    <span class="price-value">
-                      ￥93
-                      <span class="price-qi">起</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="local-product">
-              <div class="product-img">
-                <img src="../../assets/images/2cd5e949c7ddcb9eee5ed0.jpg" alt />
-              </div>
-              <div class="product-info">
-                <div class="product-name">【电子票】美国自然历史博物馆(American Museum of Natural History)</div>
-                <div class="price-wrap">
-                  <div class="price">
-                    <span class="price-value">
-                      ￥93
+                      ￥{{ item.default_price*7 }}
                       <span class="price-qi">起</span>
                     </span>
                   </div>
@@ -260,9 +159,47 @@
   </div>
 </template>
 
+
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'Dest'
+  name: 'Dest',
+
+  data() {
+    return {
+      hotList: [],
+      recommendList: [],
+      tourList: [],
+      localList: [],
+      destination: {}
+    }
+  },
+
+  methods: {
+    go(id) {
+      // this.$router.push(`/detail/${id}`)
+      this.$router.push({
+        path: `/detail/${id}`,
+        params: {
+          id: id
+        }
+      })
+    }
+  },
+
+  created() {
+    axios
+      .get('https://app.toursforfun.com/api/destination/default?name=')
+      .then(Response => {
+        this.hotList = Response.data.data.hot_attraction
+        this.recommendList = Response.data.data.hot_recommend
+        this.tourList = Response.data.data.tour_product
+        this.localList = Response.data.data.ttd_product
+        this.destination = Response.data.data.default_destination
+        // console.log(Response.data)
+      })
+  }
 }
 </script>
 
@@ -423,18 +360,20 @@ h2 {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+      :nth-child(2n) {
+        margin-right: 0px;
+      }
 
       .single-hot {
         position: relative;
-        width: 48%;
-        margin-right: 4%;
+        width: 176px;
         margin-bottom: 4%;
         box-sizing: border-box;
         overflow: hidden;
 
         img {
           width: 100%;
-          height: 24vw;
+          height: 99px;
           border-radius: 4px;
         }
         span {
@@ -485,8 +424,8 @@ h2 {
         margin-right: 2.66%;
 
         img {
-          width: 100%;
-          height: 25.1vw;
+          width: 85px;
+          height: 104px;
           border-radius: 4px;
         }
 
