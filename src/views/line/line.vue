@@ -19,7 +19,9 @@
 <script>
 import linelist from '../../componets/linelist.vue'
 export default {
-  data () {
+  // name: 'Line',
+
+  data() {
     return {
       value: 0,
       option: [

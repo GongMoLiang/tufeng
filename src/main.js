@@ -8,7 +8,20 @@ import store from './store/store.js'
 import './assets/styles/base.scss'
 
 // 按需引入vant ui 的组件路
-import { NavBar, Field, Button, Search, DropdownMenu, DropdownItem, Lazyload, Swipe, SwipeItem } from 'vant'
+import {
+  NavBar,
+  Field,
+  Button,
+  Search,
+  DropdownMenu,
+  DropdownItem,
+  Lazyload,
+  Swipe,
+  SwipeItem,
+  Tab,
+  Tabs,
+  ActionSheet
+} from 'vant'
 // 调用vant UI组件 直接 .use连缀调用
 Vue.use(NavBar)
   .use(Field)
@@ -19,6 +32,9 @@ Vue.use(NavBar)
   .use(Lazyload)
   .use(Swipe)
   .use(SwipeItem)
+  .use(Tab)
+  .use(Tabs)
+  .use(ActionSheet)
 // 把控制台的那个提示关了
 Vue.config.productionTip = false
 

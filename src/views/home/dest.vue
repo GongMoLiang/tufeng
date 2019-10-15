@@ -27,32 +27,32 @@
                 <span>精品游</span>
               </li>
               <li>
-                <img src="../../assets/images/boutique.png" alt />
-                <span>精品游</span>
+                <img src="../../assets/images/tour.png" alt />
+                <span>多日游</span>
               </li>
               <li>
-                <img src="../../assets/images/boutique.png" alt />
-                <span>精品游</span>
+                <img src="../../assets/images/activity.png" alt />
+                <span>一日游</span>
               </li>
               <li>
-                <img src="../../assets/images/boutique.png" alt />
-                <span>精品游</span>
+                <img src="../../assets/images/ticket.png" alt />
+                <span>票务</span>
               </li>
               <li>
-                <img src="../../assets/images/boutique.png" alt />
-                <span>精品游</span>
+                <img src="../../assets/images/cruise.png" alt />
+                <span>邮轮游</span>
               </li>
               <li>
-                <img src="../../assets/images/boutique.png" alt />
-                <span>精品游</span>
+                <img src="../../assets/images/custom.png" alt />
+                <span>定制旅行</span>
               </li>
             </ul>
-            <div class="slider-pager">
-              <span class="slider-pager-line">
-                <i class="iconfont icon-hengxian1"></i>
-                <i class="iconfont icon-hengxian1"></i>
-              </span>
-            </div>
+          </div>
+          <div class="slider-pager">
+            <span class="slider-pager-line">
+              <i class="iconfont icon-hengxian1"></i>
+              <i class="iconfont icon-hengxian1"></i>
+            </span>
           </div>
         </div>
         <!-- 热门推荐 -->
@@ -104,7 +104,7 @@
         </div>
         <!-- 优惠专区 -->
         <div class="discount">
-          <img src="../../assets/images/banner-优惠专区.jpg" alt />
+          <img :src="discountImg" @click="goline" />
         </div>
         <!-- 跟团游热销榜 -->
         <div class="tour-sales">
@@ -126,7 +126,7 @@
                 </div>
               </div>
             </div>
-            <span class="all">显示所有的跟团游</span>
+            <span class="all" @click="goline">显示所有的跟团游</span>
           </div>
           <span></span>
         </div>
@@ -150,7 +150,7 @@
                 </div>
               </div>
             </div>
-            <span class="all">显示所有当地玩乐</span>
+            <span class="all" @click="goline">显示所有当地玩乐</span>
           </div>
           <span></span>
         </div>
@@ -172,7 +172,8 @@ export default {
       recommendList: [],
       tourList: [],
       localList: [],
-      destination: {}
+      destination: {},
+      discountImg: {}
     }
   },
 
@@ -185,6 +186,10 @@ export default {
           id: id
         }
       })
+    },
+
+    goline() {
+      this.$router.push('/line')
     }
   },
 
@@ -197,7 +202,8 @@ export default {
         this.tourList = Response.data.data.tour_product
         this.localList = Response.data.data.ttd_product
         this.destination = Response.data.data.default_destination
-        // console.log(Response.data)
+        this.discountImg = Response.data.data.discount
+        console.log(Response.data)
       })
   }
 }
