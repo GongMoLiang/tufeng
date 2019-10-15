@@ -57,14 +57,47 @@
           <div class="comment">
             <div class="total-row">
                 <p><i class="iconfont icon-pingjia"></i>评价</p>
+                <span>阅读全部<span>12</span>条评论</span>
             </div>
-
+            <!-- 评价标签 -->
+            <div class="com-tag">
+                <h1>满意度：99%</h1>
+                <van-tag plain round type="success">导游很NiceE 6</van-tag>
+                <van-tag plain round type="success">旅途愉悦 5</van-tag>
+                <van-tag plain round type="success">风景如画 3</van-tag>
+                <van-tag plain round type="success">打call力荐 2</van-tag>
+            </div>
+            <!-- 买家评价 -->
+            <div class="self-val">
+                <div class="self-head">
+                   <img src="https://cdn.tff.bz/public/wt/69/4f/app_comment_avatar.png" alt="">
+                   <p>古灵精怪<i class="iconfont icon-xingxing"></i>
+                   <i class="iconfont icon-xingxing"></i>
+                   <i class="iconfont icon-xingxing"></i>
+                   <i class="iconfont icon-xingxing"></i>
+                   <i class="iconfont icon-xingxing"></i></p>
+                   <span>2018-08-29 14:55:59</span>
+                </div>
+                 <p>
+                    对导游的服务非常满意。一路对我们很关照，景点介绍的也很仔细，很为客人着想。
+				</p>
+            </div>
           </div>
 
           <!-- 行程 -->
-          <div class=" journey"></div>
+          <div class="journey">
+              <h1><i class="iconfont icon-hangchengdanxiao"></i>行程</h1>
+              <img src="https://tffimg.tff.bz/bc/08/92e/fd2/0ffe177b6f7619f02efb72.jpg?imageView2/1/q/20/format/jpg" alt="">
+          </div>
           <!-- 须知 -->
-          <div class="notice"></div>
+          <div class="notice">
+              <!-- 折叠面板 -->
+              <van-collapse v-model="activeName" accordion>
+                <van-collapse-item title="价格须知" name="1">价格须知信息</van-collapse-item>
+                <van-collapse-item title="接送机" name="2">接送机内容巴拉巴拉</van-collapse-item>
+                <van-collapse-item title="注意事项" name="3">注意啦啦巴拉巴拉巴拉</van-collapse-item>
+               </van-collapse>
+          </div>
       </div>
 
       <!-- 底部导航 -->
@@ -93,7 +126,8 @@
 export default {
     data() {
         return {
-            current: 0
+            current: 0,
+            activeName: '1'
         }
     },
     methods: {
@@ -122,6 +156,7 @@ export default {
             i {
                 font-size:24px;
                 width:30px;
+                margin:0 20px;
             }
             ul {
               flex:1;
@@ -203,6 +238,7 @@ export default {
                     font-size:24px;
                     color:#FB6010;
                     font-weight: bold;
+                    margin-bottom:0;
                     span{
                         font-weight: normal;
                         font-size:12px;
@@ -216,7 +252,7 @@ export default {
                     margin-bottom: 16px;
                 }
                 .tab {
-                    font-size:14px;
+                    font-size:16px;
                     margin-bottom: 18px;
                     overflow: hidden;
                     .van-tag {
@@ -226,12 +262,108 @@ export default {
                         border-radius: 2px;
                         margin-right: 7px;
                         margin-bottom: 6px;
-                        padding: 0 6px;
+                        padding: 0 10px;
                     }
                 }
             }
 
+            .comment {//评价
+                margin:0 20px;
+                padding:20px 0;
+                border-bottom:1px solid #EEE;
+                .total-row {//评价
+                    display:flex;
+                    justify-content: space-between;
+                    line-height:40px;
+                    p {
+                        font-size:16px;
+                        font-weight: bold;
+                        i{
+                            font-size:18px;
+                            margin-right:10px;
+                        }
+                    }
+                    span{
+                        color:#0090f1;
+                    }
+                }
+                .com-tag {//满意度标签
+                    padding-bottom:20px;
+                    border-bottom:1px dashed #EEE;
+                    h1{
+                        font-size: 18px;
+                        color: #F3A60E;
+                        font-weight: 700;
+                        line-height:30px;
+                        margin-bottom:10px;
+                    }
+                    .van-tag {
+                        font-size:14px;
+                        padding: 5px 8px;
+                        border: 1px solid #F5A50E;
+                        color: #F5A50E;
+                        font-weight: 400;
+                        border-radius: 20px;
+                        margin-right: 7px;
+                        display: inline-block;
+                        margin-bottom: 10px;
+                    }
+                }
+                .self-val{//买家评价
+                  padding:10px 0;
+                  p{
+                    padding:10px 0;
+                    font-size:16px;
+                    color:#767676;
+                    line-height:20px;
+                  }
+                  .self-head{
+                      padding-top:10px;
+                      display:flex;
+                      justify-content: space-between;
+                      img {
+                          width:25px;
+                          height:25px;
+                          margin-right:10px;
+                      }
+                      p{
+                        flex:1;
+                        color:#b6b6b6;
+                        font-size:14px;
+                        padding:0;
+                        i{
+                            color:#F3A60E;
+                        }
+                      }
+                      span{
+                          color:#b6b6b6;
+                          font-size:14px;
+                      }
+                  }
+                }
+            }
 
+            .journey {//行程
+                margin:0 20px;
+                padding:20px 0;
+                h1{
+                    font-size:16px;
+                    font-weight: bold;
+                    i{
+                      font-size:18px;
+                      margin-right:10px;
+                    }
+                }
+                img{
+                    width:100%;
+                }
+
+            }
+
+            .notice {//须知
+                padding:0 20px;
+                border-top:10px solid #ececec;
+            }
         }
 
         .foot-bar {//底部导航栏
