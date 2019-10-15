@@ -20,6 +20,42 @@
             <li>奥兰多</li>
             <li>安克雷奇</li>
           </ul>
+          <p>B</p>
+          <ul>
+            <li>巴黎</li>
+          </ul>
+          <p>D</p>
+          <ul>
+            <li>多伦多</li>
+          </ul>
+          <p>F</p>
+          <ul>
+            <li>费尔班克斯</li>
+          </ul>
+          <p>J</p>
+          <ul>
+            <li>旧金山</li>
+          </ul>
+          <p>K</p>
+          <ul>
+            <li>旧金山</li>
+          </ul>
+          <p>K</p>
+          <ul>
+            <li>旧金山</li>
+          </ul>
+          <p>K</p>
+          <ul>
+            <li>旧金山</li>
+          </ul>
+          <p>K</p>
+          <ul>
+            <li>旧金山</li>
+          </ul>
+          <p>K</p>
+          <ul>
+            <li>旧金山</li>
+          </ul>
         </div>
       </div>
       <div class="right">
@@ -88,14 +124,13 @@ export default {
     display: flex;
     flex: 1;
     overflow: hidden;
+    position: relative;
 
     .right {
       width: 30px;
       height: 100%;
       position: absolute;
-      top: 149px;
       right: 10px;
-      background: orange;
 
       li {
         font-size: 14px;
