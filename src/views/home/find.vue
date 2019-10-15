@@ -40,8 +40,14 @@ export default {
     fn(e) {
       this.id = e
     },
-    goLine() {
-      this.$router.push('/line')
+    goLine(id) {
+      // this.$router.push('/line')
+      this.$router.push({
+        path: '/line',
+        params: {
+          id: id
+        }
+      })
     }
   },
   created() {
@@ -72,9 +78,9 @@ export default {
       li {
         height: 48px;
         line-height: 48px;
-        font-size: 14px;
+        font-size: 13px;
         padding: 0 4px;
-        width: 80px;
+        width: 106px;
         box-sizing: border-box;
         background-color: #eee;
       }
@@ -96,8 +102,9 @@ export default {
         color: #ff6700;
       }
       li {
-        width: 130px;
+        width: 120px;
         height: 38px;
+        font-size: 12px;
         line-height: 38px;
         background-color: #eee;
         text-align: center;
