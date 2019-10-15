@@ -21,23 +21,23 @@
         <!-- 导航栏 -->
         <div class="nav-bar">
             <dl>
-                <dt><img src="../../assets/images/ticket.png"></dt>
+                <dt><img src="../../assets/images/boutique.png"></dt>
                 <dd>途风精品</dd>
             </dl>
              <dl>
-                <dt><img src="../../assets/images/ticket.png"></dt>
+                <dt><img src="../../assets/images/tour.png"></dt>
                 <dd>多日游</dd>
             </dl>
              <dl>
-                <dt><img src="../../assets/images/ticket.png"></dt>
+                <dt><img src="../../assets/images/activity.png"></dt>
                 <dd>一日游</dd>
             </dl>
              <dl>
-               <dt><img src="../../assets/images/ticket.png"></dt>
+               <dt><img src="../../assets/images/custom.png"></dt>
                 <dd>定制旅行</dd>
             </dl>
              <dl>
-                <dt><img src="../../assets/images/ticket.png"></dt>
+                <dt><img src="../../assets/images/cruise.png"></dt>
                 <dd>游轮游</dd>
             </dl>
              <dl>
@@ -45,11 +45,11 @@
                 <dd>票务</dd>
             </dl>
              <dl>
-               <dt><img src="../../assets/images/ticket.png"></dt>
+               <dt><img src="../../assets/images/qz.jpg"></dt>
                 <dd>签证</dd>
             </dl>
              <dl>
-                <dt><img src="../../assets/images/ticket.png"></dt>
+                <dt><img src="../../assets/images/jiesong.jpg"></dt>
                 <dd>接送</dd>
             </dl>
 
@@ -174,14 +174,19 @@ export default {
         display:flex;
         flex-wrap: wrap;
         padding:20px 10px;
+        justify-content: space-around;
         dl {
             margin:5px 8px;
             width:72px;
             height:88px;
-            img{
-                width:100%;
+            dt{
+                text-align: center;
+                img{
+                 width:56px;
+                }
             }
             dd{
+                margin-top:10px;
                 font-size:14px;
                 color:#363636;
                 text-align:center;
@@ -265,8 +270,9 @@ export default {
         }
         ul{
             display:flex;
+            justify-content: space-around;
             li{
-                width:154px;
+                flex:1;
                 border-radius:4px;
                 box-shadow: 0 2px 10px #e8e0e0;
                 img{
