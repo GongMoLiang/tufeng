@@ -72,12 +72,12 @@ export default {
     }
   },
   methods: {
-    //去购物车界面
-    goCard() {
+    // 去购物车界面
+    goCard () {
       this.$router.push('./card')
     },
     // 去收藏页面
-    goCollect() {
+    goCollect () {
       this.$router.push('./collect')
     }
   }

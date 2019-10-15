@@ -92,6 +92,11 @@ const router = new Router({
       path: '/line',
       name: 'line',
       component: () => import('./views/line/line.vue')
+    },
+    {
+      path: '/city',
+      name: 'city',
+      component: () => import('./views/city/city.vue')
     }
   ]
 })

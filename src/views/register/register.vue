@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     // 点击左边箭头返回到个人中心页面
-    onClickLeft() {
+    onClickLeft () {
       this.$router.push('./center')
     },
     hangleRegister() {

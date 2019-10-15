@@ -19,7 +19,7 @@
 <script>
 import linelist from '../../componets/linelist.vue'
 export default {
-  data() {
+  data () {
     return {
       value: 0,
       option: [
