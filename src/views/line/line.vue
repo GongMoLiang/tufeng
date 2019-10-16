@@ -44,7 +44,7 @@ import linelist from '../../componets/linelist.vue'
 export default {
   name: 'Line',
 
-  data() {
+  data () {
     return {
       value: 0,
       option: [
@@ -80,13 +80,13 @@ export default {
     linelist: linelist
   },
   methods: {
-    backHome() {
+    backHome () {
       this.$router.push('/index')
     },
-    showPopup() {
+    showPopup () {
       this.show = true
     },
-    closePopup() {
+    closePopup () {
       this.show = false
     },
     getValue() {

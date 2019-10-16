@@ -17,7 +17,7 @@ export default {
   name: 'Collect',
 
   methods: {
-    goBack() {
+    goBack () {
       this.$router.back('/center')
     }
   }
