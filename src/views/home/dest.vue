@@ -5,12 +5,12 @@
     </div>
     <div class="dest-header">
       <a href="#">
-        <i class="iconfont icon-sousuo"></i>
+        <i class="iconfont icon-sousuo" @click="handleTZ"></i>
       </a>
       <div class="city-container">
         <div class="city">
           <h1>{{ destination.name }}</h1>
-          <i class="iconfont icon-xialajiantou"></i>
+          <i class="iconfont icon-xialajiantou" @click="handleTZ"></i>
         </div>
         <span class="tag">{{ destination.tag }}</span>
       </div>
@@ -189,7 +189,10 @@ export default {
 
     goline () {
       this.$router.push('/line')
-    }
+    },
+    handleTZ() {
+    this.$router.push('/recommend')
+   }
   },
 
   created () {

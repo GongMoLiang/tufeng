@@ -32,7 +32,7 @@
           </div>
           <!-- 价格、文字信息 -->
           <div class="text-describle">
-              <p class="price">￥{{ (triple*1-base.discount*1)*7 }}<span>起</span></p>
+              <p class="price">￥{{ Math.ceil((triple*1-base.discount*1)*7) }}<span>起</span></p>
               <h3>{{ info.name }}</h3>
               <!-- 小标签 -->
               <div  class="tab">
@@ -164,9 +164,9 @@ export default {
                     // //  console.log(bArr)
                     //  window.localStorage.setItem(`${username}Collect`,JSON.stringify(cArr))
                 }else{//id不存在,添加收藏
-                    // cArr.push( _this.goodsID )
-                    // window.localStorage.setItem(`${username}Collect`,JSON.stringify(cArr))
-                    // return
+                    cArr.push( _this.goodsID )
+                    window.localStorage.setItem(`${username}Collect`,JSON.stringify(cArr))
+                    return
                 }
             })
         } else {//不存在,新建一个对象保存收藏的商品id

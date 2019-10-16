@@ -132,7 +132,6 @@ export default {
       })
     },
     handleTZ() {
-    console.log("触发")
     this.$router.push({
       name: 'recommend'
     })

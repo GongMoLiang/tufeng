@@ -67,10 +67,15 @@
       font-size: 11px;
       color: #5f5a5a;
     }
-    .router-link-active {
-      // background: red;
-      color: #0091f2 !important;
-    }
   }
+  & .router-link-exact-active {
+        background:lightgray;
+        .iconfont {
+          color: #387ef5;
+        }
+        span {
+          color: #387ef5;
+        }
+    }
 }
 </style>
