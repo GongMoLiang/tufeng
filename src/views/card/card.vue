@@ -9,8 +9,8 @@
       @click-right="onClickRight"
     />
     <ul>
-      <li v-for="item in cartList" :key="item.id">
-        <van-checkbox v-model="checked" shape="square" v-if="ishow"></van-checkbox>
+      <li v-for="(item,index) in cartList" :key="index">
+        <van-checkbox v-model="checked" shape="square" v-if="ishow" @click="checkone(item.id)"></van-checkbox>
         <span class="delete iconfont icon-shanchu" v-else></span>
         <div class="left">
           <dl>
@@ -54,11 +54,18 @@ export default {
       ishow: true,
       checkedAll: false,
       cartListId: [103254168, 102295677],
-      cartList: []
+      cartList: [],
+      id: 0,
+      que: []
     }
   },
   computed: {
-    ...mapState('linelist', ['lineList'])
+    ...mapState('linelist', ['lineList']),
+    getlength() {
+      // for (var i = 0; i < this.cartListId.length; i++) {
+      //   this.que.push({ value: flase })
+      // }
+    }
   },
   methods: {
     onClickRight() {
@@ -71,11 +78,10 @@ export default {
       this.checked = true
     }
   },
+
   created() {
     var that = this
     this.cartListId.forEach(item => {
-      // console.log(item)
-      // console.log(this.lineList)
       this.lineList.forEach(arr => {
         if (item == arr.id_new) {
           this.cartList.push(arr)

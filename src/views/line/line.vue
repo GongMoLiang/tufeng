@@ -29,7 +29,7 @@
     </div>
     <div>
       <van-dropdown-menu>
-        <van-dropdown-item title="出发地" ref="item"></van-dropdown-item>
+        <van-dropdown-item title="出发地" ref="item" @open="goCity"></van-dropdown-item>
         <van-dropdown-item v-model="value" :options="option" />
         <van-dropdown-item title="排序" ref="item"></van-dropdown-item>
         <!-- <span @click="showPopup">筛选</span> -->
@@ -44,7 +44,7 @@ import linelist from '../../componets/linelist.vue'
 export default {
   name: 'Line',
 
-  data () {
+  data() {
     return {
       value: 0,
       option: [
@@ -80,13 +80,16 @@ export default {
     linelist: linelist
   },
   methods: {
-    backHome () {
+    backHome() {
       this.$router.push('/index')
     },
-    showPopup () {
+    showPopup() {
       this.show = true
     },
-    closePopup () {
+    goCity() {
+      this.$router.push('/city')
+    },
+    closePopup() {
       this.show = false
     },
     getValue() {
