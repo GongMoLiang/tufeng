@@ -123,6 +123,8 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
@@ -134,7 +136,13 @@ export default {
     onChange (index) {
       this.current = index
     }
-  }
+  },
+//   created() {
+//       axios.get(`https://app.toursforfun.com/api/product/${this.$route.params.id}`).then(response => {
+//           console.log(response);
+//       })
+
+//   }
 }
 </script>
 

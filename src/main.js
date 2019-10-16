@@ -8,9 +8,6 @@ import store from './store/store.js'
 import './assets/styles/base.scss'
 
 // 按需引入vant ui 的组件路
-<<<<<<< HEAD
-import { NavBar, Field, Button, Search, DropdownMenu, DropdownItem, Lazyload, Swipe, SwipeItem, Tag, Collapse, CollapseItem } from 'vant'
-=======
 import {
   NavBar,
   Field,
@@ -24,9 +21,11 @@ import {
   Popup,
   Tab,
   Tabs,
-  ActionSheet
+  ActionSheet,
+  Tag,
+  Collapse,
+  CollapseItem
 } from 'vant'
->>>>>>> b129e3534016e8b1e98a953df1235c67bf8cfe3f
 // 调用vant UI组件 直接 .use连缀调用
 Vue.use(NavBar)
   .use(Field)
@@ -37,17 +36,13 @@ Vue.use(NavBar)
   .use(Lazyload)
   .use(Swipe)
   .use(SwipeItem)
-<<<<<<< HEAD
   .use(Tag)
   .use(Collapse)
   .use(CollapseItem)
-
-=======
   .use(Tab)
   .use(Tabs)
   .use(ActionSheet)
   .use(Popup)
->>>>>>> b129e3534016e8b1e98a953df1235c67bf8cfe3f
 // 把控制台的那个提示关了
 Vue.config.productionTip = false
 
