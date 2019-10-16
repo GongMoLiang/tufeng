@@ -1,6 +1,8 @@
 <template>
   <div class="find">
-    <h2>发现</h2>
+    <div class="title">
+      <h2>发现</h2>
+    </div>
     <div class="find-text">
       <ul class="left">
         <li
@@ -22,7 +24,7 @@
 <script>
 import axios from 'axios'
 export default {
-  data () {
+  data() {
     return {
       citylist: [],
       id: 51
@@ -50,7 +52,7 @@ export default {
       })
     }
   },
-  created () {
+  created() {
     axios
       .get('https://app.toursforfun.com//api/article/menu')
       .then(Response => {
@@ -62,11 +64,14 @@ export default {
 </script>
 <style lang="scss">
 .find {
-  h2 {
+  .title {
     height: 43px;
-    text-align: center;
-    line-height: 43px;
-    box-shadow: 0 1px 2px rgba(88, 88, 88, 0.1);
+    h2 {
+      text-align: center;
+      line-height: 43px;
+      box-shadow: 0 1px 2px rgba(88, 88, 88, 0.1);
+      margin: 0;
+    }
   }
   .find-text {
     // overflow: hidden;
