@@ -79,11 +79,11 @@ export default {
   },
   methods: {
     // 去购物车界面
-    goCard() {
+    goCard () {
       this.$router.push('./card')
     },
     // 去收藏页面
-    goCollect() {
+    goCollect () {
       this.$router.push('./collect')
     }
   }

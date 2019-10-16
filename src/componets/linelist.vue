@@ -1,7 +1,7 @@
 <template>
   <!-- 旅游列表页组件 -->
   <ul class="line-list">
-    <li v-for="item in lineList" :key="item.id_new" @click="goDetail(item.id._new)">
+    <li v-for="item in lineList" :key="item.id_new" @click="goDetail(item.id_new, item.default_price)">
       <div class="left">
         <img :src="item.image" alt />
       </div>
@@ -30,17 +30,18 @@ export default {
   },
   methods: {
     ...mapActions('linelist', ['getlineList']),
-    //携带id去详情页面
-    goDetail(id) {
+    // 携带id去详情页面
+    goDetail (id, price) {
       this.$router.push({
-        path: `/detail/${id}`,
+        name: 'detail',
         params: {
-          id: id
+          id: id,
+          price: price * 7
         }
       })
     }
   },
-  created() {
+  created () {
     this.getlineList()
   }
 }
