@@ -21,7 +21,8 @@ import {
   Popup,
   Tab,
   Tabs,
-  ActionSheet
+  ActionSheet,
+  Toast
 } from 'vant'
 // 调用vant UI组件 直接 .use连缀调用
 Vue.use(NavBar)
@@ -37,6 +38,7 @@ Vue.use(NavBar)
   .use(Tabs)
   .use(ActionSheet)
   .use(Popup)
+  .use(Toast)
 // 把控制台的那个提示关了
 Vue.config.productionTip = false
 

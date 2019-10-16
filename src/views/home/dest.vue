@@ -305,6 +305,7 @@ h2 {
       .slider {
         flex: 1;
         overflow-x: auto;
+        width: 100%;
         ul {
           // justify-content: space-between;
           overflow: hidden;
@@ -371,7 +372,7 @@ h2 {
 
       .single-hot {
         position: relative;
-        width: 176px;
+        width: 48%;
         margin-bottom: 4%;
         box-sizing: border-box;
         overflow: hidden;
@@ -423,13 +424,14 @@ h2 {
       display: flex;
       margin-top: 14px;
       justify-content: space-between;
+      overflow: hidden;
 
       .single-attractions {
         width: 23%;
-        margin-right: 2.66%;
+        // margin-right: 2.66%;
 
         img {
-          width: 85px;
+          width: 100%;
           height: 104px;
           border-radius: 4px;
         }

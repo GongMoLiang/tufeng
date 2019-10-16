@@ -29,3 +29,17 @@
     transform: scaleY(0.5);
   }
 }
+
+@mixin border-left {
+  position: relative;
+  &::before {
+    content: '';
+    width: 3px;
+    height: 18px;
+    background: #0090f3;
+    display: block;
+    position: absolute;
+    top: 16px;
+    border-radius: 0 4px 4px 0;
+  }
+}

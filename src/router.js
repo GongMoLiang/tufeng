@@ -45,6 +45,10 @@ const router = new Router({
           component: () => import('./views/home/center.vue')
         },
         {
+          path: 'recommend',
+          component: () => import('./views/recommend/recommend.vue')
+        },
+        {
           path: '',
           name: 'moren',
           redirect: 'index'

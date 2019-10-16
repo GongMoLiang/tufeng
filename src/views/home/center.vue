@@ -72,7 +72,7 @@
 <script>
 export default {
   name: 'center',
-  data () {
+  data() {
     return {
       username: JSON.parse(window.localStorage.getItem('userInfo')).username
     }
@@ -154,12 +154,14 @@ export default {
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
+
     li {
       display: flex;
       width: 70px;
       height: 97px;
       flex-direction: column;
       text-align: center;
+
       :first-child {
         color: #363636;
         font-size: 24px;
