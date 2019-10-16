@@ -3,7 +3,7 @@
     <div class="page-detail">
         <!-- 头部导航栏 -->
       <div class="nav-bar">
-          <i class="iconfont icon-fanhui"></i>
+          <i class="iconfont icon-fanhui" @click="goBack"></i>
           <ul>
               <li class="active">简介</li>
               <li>评价</li>
@@ -17,40 +17,37 @@
       <div class="content">
           <!-- 图片信息-轮播图 -->
           <div class="slide-pic">
-                <van-swipe @change="onChange">
-                    <van-swipe-item>
-                        <img src="//cdn.tff.bz/public/wt/c2/0d/20190619072202890932693.jpg?imageView2/1/w/720/h/520/q/100/format/jpg" />
+                <van-swipe @change="onChange" :loop="false">
+                     <van-swipe-item>
+                        <img :src="base.image_url" />
                     </van-swipe-item>
-                    <van-swipe-item>
-                        <img src="//tffimg.tff.bz/c5/62/bef/969/97926ed056cbd51b45b8b0.jpg?imageView2/1/w/720/h/520/q/100/format/jpg" />
+                    <van-swipe-item v-for="(image, index) in imgList" :key="index">
+                        <img :src="image.url" />
                     </van-swipe-item>
                     <div class="custom-indicator" slot="indicator">
-                        {{ current + 1 }}/2
+                        {{ current + 1 }}/{{imgList.length+1}}
                     </div>
                 </van-swipe>
-                <div class="number">编号:<span>607767</span></div>
+                <div class="number">编号:<span>{{base.product_old_id}}</span></div>
           </div>
           <!-- 价格、文字信息 -->
           <div class="text-describle">
-              <p class="price">￥8956.96<span>起</span></p>
-              <h3>【10人小团 老美达人带你玩 三文鱼洄游】黄石公园健行+泡温泉悠闲5日游：2日纯玩黄石+私人游艇环游黄石湖+骑马穿越黄石森林+大提顿缆车登顶赏秋枫（可升级2晚黄石别墅，特色酒店大篷车住宿）</h3>
+              <p class="price">￥{{ (triple*1-base.discount*1)*7 }}<span>起</span></p>
+              <h3>{{ info.name }}</h3>
               <!-- 小标签 -->
               <div  class="tab">
-                <van-tag plain type="success">途风小众</van-tag>
-                <van-tag plain type="success">达人领队</van-tag>
-                <van-tag plain type="success">轻奢小众游</van-tag>
-                <van-tag plain type="success">温泉体验</van-tag>
-                <van-tag plain type="success">途风小众</van-tag>
+                <van-tag plain type="success" v-for="tag in base.tags" :key="tag.product_icon_id">{{
+                    tag.name }}</van-tag>
               </div>
-              <p>出发 <span>盐湖城</span></p>
-              <p>结束 <span>盐湖城</span></p>
+              <p>出发 <span>{{startP}}</span></p>
+              <p>结束 <span>{{endP}}</span></p>
               <div class="others">
-                  <p>行程 <span>5天</span></p>
-                  <p>景点 <span>14个景点</span></p>
+                  <p>行程 <span>{{ base.duration }}天</span></p>
+                  <p>景点 <span>{{ senic.attraction_num }}个景点</span></p>
               </div>
               <div class="others">
-                  <p>自费 <span>12项自费</span></p>
-                  <p>服务语言 <span>中文 英语</span></p>
+                  <p>自费 <span>{{senic.ownexpense_num}}项自费</span></p>
+                  <p>服务语言 <span v-for="lang in language" :key="lang.provider_language_id">{{lang.name}}</span></p>
               </div>
           </div>
           <!-- 评价 -->
@@ -87,15 +84,15 @@
           <!-- 行程 -->
           <div class="journey">
               <h1><i class="iconfont icon-hangchengdanxiao"></i>行程</h1>
-              <img src="https://tffimg.tff.bz/bc/08/92e/fd2/0ffe177b6f7619f02efb72.jpg?imageView2/1/q/20/format/jpg" alt="">
+              <p v-html="info.brief_description"></p>
           </div>
           <!-- 须知 -->
           <div class="notice">
               <!-- 折叠面板 -->
               <van-collapse v-model="activeName" accordion>
-                <van-collapse-item title="价格须知" name="1">价格须知信息</van-collapse-item>
-                <van-collapse-item title="接送机" name="2">接送机内容巴拉巴拉</van-collapse-item>
-                <van-collapse-item title="注意事项" name="3">注意啦啦巴拉巴拉巴拉</van-collapse-item>
+                <van-collapse-item title="价格须知" name="1"><p v-html="info.price_special_note"></p></van-collapse-item>
+                <van-collapse-item title="接送机" name="2"><p v-html="info.airport_transfer_info"></p></van-collapse-item>
+                <van-collapse-item title="注意事项" name="3"><p v-html="info.notice"></p></van-collapse-item>
                </van-collapse>
           </div>
       </div>
@@ -105,8 +102,9 @@
           <!-- 收藏、咨询 -->
           <div class="collect">
               <ul>
+                  <!-- 点击收藏，设置localstorage -->
                   <li>
-                      <i class="iconfont icon-aixin"></i>
+                      <i class="iconfont icon-aixin" @click.self="shouCang"></i>
                       <p>收藏</p>
                   </li>
                   <li>
@@ -123,18 +121,92 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
+import Vue from 'vue'
+import { Dialog } from 'vant'
+Vue.use(Dialog)
+
 export default {
   data () {
     return {
       current: 0,
-      activeName: '1'
+      activeName: '1',
+      language: [], // 语言
+      base: {}, // 基础信息
+      imgList: {}, // 轮播图
+      info: {}, // 其他说明
+      triple: String, // 最低价格
+      startP: String,
+      endP: String,
+      senic: String,
+      goodsID: String,//商品id
     }
   },
   methods: {
     onChange (index) {
       this.current = index
+    },
+    goBack () { // 返回上一页
+      this.$router.back()
+    },
+    shouCang () { // 添加收藏
+      // 调用判断是否登录的方法，如果没有登录,则跳转到登录页面，
+      let username = this.getUserInfo()
+      if (username) { // 已经登录
+        let userCollect = window.localStorage.getItem(`${username}Collect`)
+        console.log(userCollect);
+        if ( userCollect ) {//个人收藏存在，
+            var _this=this
+            let cArr=JSON.parse(userCollect)
+            cArr.forEach(function(item, index){//遍历，判断商品id是否存在，
+                if( _this.goodsID === item){//存在，取消收藏，删除该id
+                    // cArr.splice(index,1)
+                    // //  console.log(bArr)
+                    //  window.localStorage.setItem(`${username}Collect`,JSON.stringify(cArr))
+                }else{//id不存在,添加收藏
+                    // cArr.push( _this.goodsID )
+                    // window.localStorage.setItem(`${username}Collect`,JSON.stringify(cArr))
+                    // return
+                }
+            })
+        } else {//不存在,新建一个对象保存收藏的商品id
+            let goodsArr = []
+            goodsArr.push(this.goodsID)
+            window.localStorage.setItem(`${username}Collect`,JSON.stringify(goodsArr))
+        }
+      } else { // 没有登录，弹出提示框，跳转到登录页面
+        Dialog.alert({
+          showCancelButton:true,
+          title: '提示信息',
+          message: '您还没有登录，请登录'
+        }).then(() => {
+          this.$router.push('/login')
+        })
+      }
+    },
+    getUserInfo () { // 判断是否已经登录
+      let userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+      if (userInfo) { // 已经登录
+        return userInfo.username
+      } else { // 没有登录
+        return ''
+      }
     }
-  }
+  },
+  created () {
+    axios.get(`https://app.toursforfun.com/api/product/${this.$route.params.id}`).then(response => {
+      let result = response.data.data
+      this.base = result.base
+      this.info = result.info
+      this.language = result.language
+      this.goodsID = result.base.product_id
+      this.imgList = result.base.media.extra
+      this.triple = this.info.product_price_display.triple
+      this.startP = this.base.departure_city_name[0].departure_city_name
+      this.endP = this.base.return_city_name[0].return_city_name
+      this.senic = this.base.product_info_statistics
+    })
+  },
 }
 </script>
 
@@ -184,7 +256,7 @@ export default {
                     position: relative;
                     img {
                         width:100%;
-                        height:100%;
+                        height:248px;
                     }
                 }
                 .custom-indicator{//图片页码
@@ -239,6 +311,7 @@ export default {
                     font-weight: bold;
                     margin-bottom:0;
                     span{
+                        color:#FB6010;
                         font-weight: normal;
                         font-size:12px;
                         margin-left:5px;
@@ -348,13 +421,18 @@ export default {
                 h1{
                     font-size:16px;
                     font-weight: bold;
+                    margin-bottom:10px;
                     i{
                       font-size:18px;
                       margin-right:10px;
                     }
                 }
-                img{
-                    width:100%;
+                p {
+                    line-height:20px;
+                    color:#767676;
+                    span{
+                        color:red !important;
+                    }
                 }
 
             }

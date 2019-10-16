@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { Dialog } from 'vant'
 
 // // 引入的一级路由home组件
 // import Home from './views/home/home.vue'
@@ -13,7 +14,7 @@ import Router from 'vue-router'
 // // 引入的一级路由detail组件
 // import Detail from './views/detail/detail.vue'
 
-Vue.use(Router)
+Vue.use(Router).use(Dialog)
 
 const router = new Router({
   routes: [
@@ -110,12 +111,18 @@ router.beforeEach((to, from, next) => {
   let userInfo = window.localStorage.getItem('userInfo')
   if (to.meta.needLogin && !userInfo) {
     // 携带路劲过去登入页面
-    alert('你还没有登入，请先登入账号')
-    next({
-      path: '/login',
-      query: {
-        redirect: to.fullPath
-      }
+    Dialog.alert({
+      showCancelButton: true,
+      title: '登入提示',
+      message: '你还没有登入，是否去登入'
+    }).then(() => {
+      // on close
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath
+        }
+      })
     })
   } else {
     next()

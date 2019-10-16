@@ -42,11 +42,11 @@ export default {
   },
 
   methods: {
-    gotologin() {
+    gotologin () {
       this.$router.push('/login')
     },
 
-    onSelect(item) {
+    onSelect (item) {
       // 点击选项时默认不会关闭菜单，可以手动关闭
       this.show = true
       Toast(item.name)

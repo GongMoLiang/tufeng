@@ -28,7 +28,7 @@
 import axios from 'axios'
 import { userInfo } from 'os'
 export default {
-  data() {
+  data () {
     return {
       email: '',
       password: ''
@@ -36,11 +36,11 @@ export default {
   },
   methods: {
     // 点击左边箭头返回到个人中心页面
-    onClickLeft() {
+    onClickLeft () {
       this.$router.push('./center')
     },
     // 处理登入
-    hangleLogin() {
+    hangleLogin () {
       // console.log(1)
       axios
         .post('http://localhost:3000/api/login', {
@@ -92,4 +92,3 @@ export default {
   }
 }
 </style>
-

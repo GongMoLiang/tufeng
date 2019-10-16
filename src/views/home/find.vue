@@ -31,18 +31,18 @@ export default {
     }
   },
   computed: {
-    destlist: function() {
+    destlist: function () {
       var _this = this
-      return this.citylist.filter(function(item) {
+      return this.citylist.filter(function (item) {
         return item.cid == _this.id
       })[0].children
     }
   },
   methods: {
-    fn(e) {
+    fn (e) {
       this.id = e
     },
-    goLine(id) {
+    goLine (id) {
       // this.$router.push('/line')
       this.$router.push({
         path: '/line',

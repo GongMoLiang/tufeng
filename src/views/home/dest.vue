@@ -159,14 +159,13 @@
   </div>
 </template>
 
-
 <script>
 import axios from 'axios'
 
 export default {
   name: 'Dest',
 
-  data() {
+  data () {
     return {
       hotList: [],
       recommendList: [],
@@ -178,7 +177,7 @@ export default {
   },
 
   methods: {
-    go(id) {
+    go (id) {
       // this.$router.push(`/detail/${id}`)
       this.$router.push({
         path: `/detail/${id}`,
@@ -188,12 +187,12 @@ export default {
       })
     },
 
-    goline() {
+    goline () {
       this.$router.push('/line')
     }
   },
 
-  created() {
+  created () {
     axios
       .get('https://app.toursforfun.com/api/destination/default?name=')
       .then(Response => {
