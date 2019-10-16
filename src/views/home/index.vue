@@ -9,7 +9,7 @@
 
     <!-- 搜索框 -->
     <div class="search">
-      <van-search placeholder="城市、景点、产品、关键字" show-action shape="round">
+      <van-search placeholder="城市、景点、产品、关键字" show-action shape="round" @focus="handleTZ">
         <div slot="action" class="iconfont icon-kefu"></div>
       </van-search>
     </div>
@@ -130,7 +130,13 @@ export default {
           value: tep
         }
       })
-    }
+    },
+    handleTZ() {
+    console.log("触发")
+    this.$router.push({
+      name: 'recommend'
+    })
+   }
   },
   created() {
     axios

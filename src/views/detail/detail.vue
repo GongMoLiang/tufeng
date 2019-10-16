@@ -211,6 +211,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    [v-cloak] {
+        display:none;
+    }
     .page-detail{
         width:100%;
         height:100%;

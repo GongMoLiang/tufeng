@@ -46,10 +46,6 @@ const router = new Router({
           component: () => import('./views/home/center.vue')
         },
         {
-          path: 'recommend',
-          component: () => import('./views/recommend/recommend.vue')
-        },
-        {
           path: '',
           name: 'moren',
           redirect: 'index'
@@ -102,6 +98,11 @@ const router = new Router({
       path: '/city',
       name: 'city',
       component: () => import('./views/city/city.vue')
+    },
+    {
+      path: '/recommend',
+      name: 'recommend',
+      component: () => import('./views/recommend/recommend.vue')
     }
   ]
 })
