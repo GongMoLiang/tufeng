@@ -25,7 +25,7 @@
     </van-popup>
     <div class="detial-serch">
       <span class="iconfont icon-fanhui" @click="backHome"></span>
-      <van-search placeholder="请输入搜索关键词" v-model="value2" shape="round" />
+      <van-search placeholder="请输入搜索关键词" v-model="seachValue" shape="round" />
     </div>
     <div>
       <van-dropdown-menu>
@@ -36,7 +36,7 @@
         <van-dropdown-item title="筛选" ref="item2" @open="showPopup"></van-dropdown-item>
       </van-dropdown-menu>
     </div>
-    <linelist></linelist>
+    <linelist :value="type"></linelist>
   </div>
 </template>
 <script>
@@ -55,7 +55,25 @@ export default {
         { text: '游轮游', value: 4 },
         { text: '接送', value: 5 }
       ],
-      show: false
+      show: false,
+      seachValue: ''
+    }
+  },
+  computed: {
+    type() {
+      if (this.seachValue == '途风精品') {
+        return 'boutique'
+      } else if (this.seachValue == '一日游') {
+        return 'activity'
+      } else if (this.seachValue == '票务') {
+        return 'ticket'
+      } else if (this.seachValue == '邮轮游') {
+        return 'cruise'
+      } else if (this.seachValue == '多日游') {
+        return 'tour'
+      } else if (this.seachValue == '接送') {
+        return 'shuttle'
+      }
     }
   },
   components: {
@@ -70,7 +88,14 @@ export default {
     },
     closePopup() {
       this.show = false
+    },
+    getValue() {
+      // console.log(this.$route.params.value)
+      this.seachValue = this.$route.params.value
     }
+  },
+  created() {
+    this.getValue()
   }
 }
 </script>

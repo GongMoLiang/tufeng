@@ -1,7 +1,11 @@
 <template>
   <!-- 旅游列表页组件 -->
   <ul class="line-list">
-    <li v-for="item in lineList" :key="item.id_new" @click="goDetail(item.id._new)">
+    <li
+      v-for="item in lineList"
+      :key="item.id_new"
+      @click="goDetail(item.id_new,item.default_price)"
+    >
       <div class="left">
         <img :src="item.image" alt />
       </div>
@@ -21,27 +25,34 @@
   </ul>
 </template>
 <script>
-
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'linelist',
+  props: {
+    value: {
+      type: String,
+      default: 'boutique'
+    }
+  },
   computed: {
     ...mapState('linelist', ['lineList'])
   },
   methods: {
     ...mapActions('linelist', ['getlineList']),
     //携带id去详情页面
-    goDetail(id) {
+    goDetail(id, price) {
       this.$router.push({
-        path: `/detail/${id}`,
+        name: 'detail',
         params: {
-          id: id
+          id: id,
+          price: price
         }
       })
     }
   },
   created() {
-    this.getlineList()
+    // console.log(this.value)
+    this.getlineList({ type: this.value })
   }
 }
 </script>
