@@ -22,15 +22,12 @@ import {
   Tab,
   Tabs,
   ActionSheet,
-<<<<<<< HEAD
-  Toast
-=======
+  Toast,
   Checkbox,
   CheckboxGroup,
   Tag,
   Collapse,
   CollapseItem
->>>>>>> 67190743203c40edb9228961eca3571bb43d11d5
 } from 'vant'
 // 调用vant UI组件 直接 .use连缀调用
 Vue.use(NavBar)
@@ -47,16 +44,13 @@ Vue.use(NavBar)
   .use(Tabs)
   .use(ActionSheet)
   .use(Popup)
-<<<<<<< HEAD
   .use(Toast)
-=======
   .use(Checkbox)
   .use(CheckboxGroup)
   .use(Tag)
   .use(Collapse)
   .use(CollapseItem)
 
->>>>>>> 67190743203c40edb9228961eca3571bb43d11d5
 // 把控制台的那个提示关了
 Vue.config.productionTip = false
 
