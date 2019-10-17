@@ -1,20 +1,20 @@
 <template>
   <!-- 旅游列表页组件 -->
   <ul class="line-list">
-    <li v-for="item in lineList" :key="item.id_new" @click="goDetail(item.id_new)">
+    <li v-for="item in collectList" :key="item.id">
       <div class="left">
-        <img :src="item.image" alt />
-        <div class="mast">&emsp;{{item.departure_desc}}出发</div>
+        <img :src="item.image[0].url" alt />
+        <div class="mast">{{item.dest}} 出发</div>
       </div>
       <dl class="right">
-        <dt>{{item.name}}</dt>
+        <dt>{{item.title}}</dt>
         <dd class="tag">
-          <span v-for="arr in item.tags" :key="arr.name">{{arr.name}}</span>
+          <span v-for="(arr, index) in item.tag" :key="index">{{arr.name}}</span>
         </dd>
         <dd class="data">
-          <div class="num">{{ item.order_count }}人出游</div>
+          <div class="num">{{ Math.ceil(Math.random() * 100) }}</div>
           <div class="money">
-            <span>￥{{ item.default_price*7}}</span>起
+            <span>{{item.price}}</span>起
           </div>
         </dd>
       </dl>
@@ -22,38 +22,11 @@
   </ul>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 export default {
-  name: 'linelist',
-  props: {
-    value: {
-      type: String,
-      default: 'boutique'
-    },
-    curpageNum: {
-      type: Number,
-      default: 1
-    }
-  },
+  name: 'collectlist',
   computed: {
-    ...mapState('linelist', ['lineList'])
-  },
-  methods: {
-    ...mapActions('linelist', ['getlineList']),
-    //携带id去详情页面
-    goDetail(id) {
-      this.$router.push({
-        name: 'detail',
-        params: {
-          id: id,
-          value: this.value
-        }
-      })
-    }
-  },
-  created() {
-    // console.log(this.value)
-    this.getlineList({ type: this.value, page: this.curpageNum })
+    ...mapState('collect', ['collectList'])
   }
 }
 </script>

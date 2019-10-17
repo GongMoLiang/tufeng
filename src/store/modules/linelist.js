@@ -17,14 +17,14 @@ export default {
           params: {
             customCurrency: 'CNY',
             custom_tag: '',
-            page: 1,
+            page: payload.page,
             pageSize: 10,
             product_line: payload.type
           }
         })
         .then(response => {
           let result = response.data.data.product_list
-          contect.commit('setlineList', result)
+          contect.commit('setlineList', contect.state.lineList.concat(result))
         })
     }
   }

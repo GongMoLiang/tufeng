@@ -28,7 +28,7 @@
         <span>优惠券</span>
       </li>
       <li @click="goCollect">
-        <span>0</span>
+        <span>{{length}}</span>
         <span>收藏</span>
       </li>
       <li>
@@ -70,6 +70,7 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'center',
   data() {
@@ -79,12 +80,18 @@ export default {
   },
   methods: {
     // 去购物车界面
-    goCard () {
+    goCard() {
       this.$router.push('./card')
     },
     // 去收藏页面
-    goCollect () {
+    goCollect() {
       this.$router.push('./collect')
+    }
+  },
+  computed: {
+    ...mapState('collect', ['collectList']),
+    length() {
+      return this.collectList.length
     }
   }
 }

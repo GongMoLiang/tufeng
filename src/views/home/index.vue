@@ -9,7 +9,7 @@
 
     <!-- 搜索框 -->
     <div class="search">
-      <van-search placeholder="城市、景点、产品、关键字" show-action shape="round">
+      <van-search placeholder="城市、景点、产品、关键字" show-action shape="round" @focus="handleTZ">
         <div slot="action" class="iconfont icon-kefu"></div>
       </van-search>
     </div>
@@ -130,6 +130,11 @@ export default {
           value: tep
         }
       })
+    },
+    handleTZ() {
+      this.$router.push({
+        name: 'recommend'
+      })
     }
   },
   created() {
@@ -146,7 +151,7 @@ export default {
           let consult = response.data.data
           this.onSalePic = consult.discount.image
           this.newlineList = consult.new_product.list
-          console.log(this.newlineList)
+          // console.log(this.newlineList)
         })
   }
 }

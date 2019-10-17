@@ -1,6 +1,7 @@
 <template>
   <div class="recommend-page">
     <div class="search">
+      <i class="iconfont icon-fanhui" @click="goBack"></i>
       <van-search placeholder="城市、景点、产品、关键字" class="searchBar" shape="round"></van-search>
     </div>
     <div class="recommendList">
@@ -51,6 +52,9 @@ export default {
   methods: {
     fn(id) {
       this.id = id
+    },
+    goBack () { // 返回上一页
+      this.$router.back()
     }
   },
   computed: {
@@ -97,11 +101,18 @@ export default {
 
   .search {
     @include border-bottom;
-
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
     height: 44px;
     width: 100%;
+    i {
+      width:30px;
+      font-size:22px;
+    }
   }
   .searchBar {
+    flex:1;
     padding: 5px;
     // background: red;
   }

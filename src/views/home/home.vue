@@ -49,29 +49,32 @@
   background-image: none;
   background-color: #fff;
   border: none;
-  ul {
-    li {
-      display: flex;
-      flex: 1;
-      text-align: center;
-      justify-content: center;
-      flex-direction: column;
-      i {
-        font-size: 24px;
-        margin-bottom: 3px;
-        // span {
-        //   font-size: 12px;
-        //   color: #d6d6d6;
-        // }
-      }
-      .barname {
-        font-size: 11px;
-        color: #5f5a5a;
-      }
-      .router-link-active {
-        // background: red;
-        color: #0091f2 !important;
-      }
+  li {
+    display: flex;
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    i {
+      font-size: 24px;
+      margin-bottom: 3px;
+      // span {
+      //   font-size: 12px;
+      //   color: #d6d6d6;
+      // }
+    }
+    .barname {
+      font-size: 11px;
+      color: #5f5a5a;
+    }
+  }
+  & .router-link-exact-active {
+    background: lightgray;
+    .iconfont {
+      color: #387ef5;
+    }
+    span {
+      color: #387ef5;
     }
   }
 }

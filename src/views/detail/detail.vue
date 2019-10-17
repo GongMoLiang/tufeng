@@ -1,54 +1,57 @@
 <template>
 <!-- 旅游详情页 -->
-    <div class="page-detail">
+<div>
+<div class="page-detail" v-if="ishow">
         <!-- 头部导航栏 -->
       <div class="nav-bar">
           <i class="iconfont icon-fanhui" @click="goBack"></i>
           <ul>
-              <li class="active">简介</li>
-              <li>评价</li>
-              <li>行程</li>
-              <li>须知</li>
+              <li :class="{active: id==0}" @click="fn2(0)">简介</li>
+              <li :class="{active: id==1}" @click="fn2(1)">评价</li>
+              <li :class="{active: id==2}" @click="fn2(2)">行程</li>
+              <li :class="{active: id==3}" @click="fn2(3)">须知</li>
           </ul>
           <i class="iconfont icon-weibiaoti--"></i>
       </div>
 
       <!-- 详情信息 -->
       <div class="content">
-          <!-- 图片信息-轮播图 -->
-          <div class="slide-pic">
-                <van-swipe @change="onChange" :loop="false">
-                     <van-swipe-item>
-                        <img :src="base.image_url" />
-                    </van-swipe-item>
-                    <van-swipe-item v-for="(image, index) in imgList" :key="index">
-                        <img :src="image.url" />
-                    </van-swipe-item>
-                    <div class="custom-indicator" slot="indicator">
-                        {{ current + 1 }}/{{imgList.length+1}}
-                    </div>
-                </van-swipe>
-                <div class="number">编号:<span>{{base.product_old_id}}</span></div>
-          </div>
-          <!-- 价格、文字信息 -->
-          <div class="text-describle">
-              <p class="price">￥{{ (triple*1-base.discount*1)*7 }}<span>起</span></p>
-              <h3>{{ info.name }}</h3>
-              <!-- 小标签 -->
-              <div  class="tab">
-                <van-tag plain type="success" v-for="tag in base.tags" :key="tag.product_icon_id">{{
-                    tag.name }}</van-tag>
-              </div>
-              <p>出发 <span>{{startP}}</span></p>
-              <p>结束 <span>{{endP}}</span></p>
-              <div class="others">
-                  <p>行程 <span>{{ base.duration }}天</span></p>
-                  <p>景点 <span>{{ senic.attraction_num }}个景点</span></p>
-              </div>
-              <div class="others">
-                  <p>自费 <span>{{senic.ownexpense_num}}项自费</span></p>
-                  <p>服务语言 <span v-for="lang in language" :key="lang.provider_language_id">{{lang.name}}</span></p>
-              </div>
+          <div>
+            <!-- 图片信息-轮播图 -->
+            <div class="slide-pic">
+                    <van-swipe @change="onChange" :loop="false">
+                        <van-swipe-item>
+                            <img :src="base.image_url" />
+                        </van-swipe-item>
+                        <van-swipe-item v-for="(image, index) in imgList" :key="index">
+                            <img :src="image.url" />
+                        </van-swipe-item>
+                        <div class="custom-indicator" slot="indicator">
+                            {{ current + 1 }}/{{imgList.length+1}}
+                        </div>
+                    </van-swipe>
+                    <div class="number">编号:<span>{{base.product_old_id}}</span></div>
+            </div>
+            <!-- 价格、文字信息 -->
+            <div class="text-describle">
+                <p class="price">￥{{ Math.ceil((triple*1-base.discount*1)*7) }}<span>起</span></p>
+                <h3>{{ info.name }}</h3>
+                <!-- 小标签 -->
+                <div  class="tab">
+                    <van-tag plain type="success" v-for="tag in base.tags" :key="tag.product_icon_id">{{
+                        tag.name }}</van-tag>
+                </div>
+                <p>出发 <span>{{startP}}</span></p>
+                <p>结束 <span>{{endP}}</span></p>
+                <div class="others">
+                    <p>行程 <span>{{ base.duration }}天</span></p>
+                    <p>景点 <span>{{ senic.attraction_num }}个景点</span></p>
+                </div>
+                <div class="others">
+                    <p>自费 <span>{{senic.ownexpense_num}}项自费</span></p>
+                    <p>服务语言 <span v-for="lang in language" :key="lang.provider_language_id">{{lang.name}}</span></p>
+                </div>
+            </div>
           </div>
           <!-- 评价 -->
           <div class="comment">
@@ -104,7 +107,7 @@
               <ul>
                   <!-- 点击收藏，设置localstorage -->
                   <li>
-                      <i class="iconfont icon-aixin" @click.self="shouCang"></i>
+                      <i class="iconfont icon-aixin1" @click.self="shouCang" :class="{red: changecolor}"></i>
                       <p>收藏</p>
                   </li>
                   <li>
@@ -119,61 +122,106 @@
           <div class="order">立即订购<p>（2人起订）</p></div>
       </div>
     </div>
+   <van-loading type="spinner" color="blue" v-else/>
+</div>
+
 </template>
 <script>
 import axios from 'axios'
 import Vue from 'vue'
 import { Dialog } from 'vant'
+import { mapState, mapMutations } from 'vuex'
 Vue.use(Dialog)
 
 export default {
   data () {
     return {
+      id:0,
       current: 0,
       activeName: '1',
       language: [], // 语言
       base: {}, // 基础信息
       imgList: {}, // 轮播图
       info: {}, // 其他说明
-      triple: String, // 最低价格
-      startP: String,
-      endP: String,
-      senic: String,
-      goodsID: String,//商品id
+      triple: '', // 最低价格
+      startP: '',
+      endP: '',
+      senic: '',
+      goodsID: '',//商品id
+      ishow:false,
+      changecolor: false
     }
   },
+  computed: {
+      ...mapState('collect',['collectList'])
+  },
   methods: {
+      ...mapMutations('collect',['setcollectList']),
     onChange (index) {
       this.current = index
     },
     goBack () { // 返回上一页
-      this.$router.back()
+      this.$router.push({
+          name: "line",
+          params: {
+             type: this.$route.params.value
+          }
+      })
+    },
+    fn2(id){
+        this.id=id
+        let top=document.getElementsByClassName('content')[0].children[id].offsetTop
+         document.documentElement.scrollTop=top-26
     },
     shouCang () { // 添加收藏
       // 调用判断是否登录的方法，如果没有登录,则跳转到登录页面，
       let username = this.getUserInfo()
       if (username) { // 已经登录
-        let userCollect = window.localStorage.getItem(`${username}Collect`)
-        console.log(userCollect);
-        if ( userCollect ) {//个人收藏存在，
-            var _this=this
-            let cArr=JSON.parse(userCollect)
-            cArr.forEach(function(item, index){//遍历，判断商品id是否存在，
-                if( _this.goodsID === item){//存在，取消收藏，删除该id
-                    // cArr.splice(index,1)
-                    // //  console.log(bArr)
-                    //  window.localStorage.setItem(`${username}Collect`,JSON.stringify(cArr))
-                }else{//id不存在,添加收藏
-                    // cArr.push( _this.goodsID )
-                    // window.localStorage.setItem(`${username}Collect`,JSON.stringify(cArr))
-                    // return
-                }
-            })
-        } else {//不存在,新建一个对象保存收藏的商品id
-            let goodsArr = []
-            goodsArr.push(this.goodsID)
-            window.localStorage.setItem(`${username}Collect`,JSON.stringify(goodsArr))
+        // let userCollect = window.localStorage.getItem(`${username}Collect`)
+        // console.log(userCollect);
+        // if ( userCollect ) {//个人收藏存在，
+        //     var _this=this
+        //     let cArr=JSON.parse(userCollect)
+        //     cArr.forEach(function(item, index){//遍历，判断商品id是否存在，
+        //         if( _this.goodsID === item){//存在，取消收藏，删除该id
+        //             // cArr.splice(index,1)
+        //             // //  console.log(bArr)
+        //             //  window.localStorage.setItem(`${username}Collect`,JSON.stringify(cArr))
+        //         }else{//id不存在,添加收藏
+        //             cArr.push( _this.goodsID )
+        //             window.localStorage.setItem(`${username}Collect`,JSON.stringify(cArr))
+        //             return
+        //         }
+        //     })
+        // } else {//不存在,新建一个对象保存收藏的商品id
+        //     let goodsArr = []
+        //     goodsArr.push(this.goodsID)
+        //     window.localStorage.setItem(`${username}Collect`,JSON.stringify(goodsArr))
+        // }
+
+        // 方法二 把收藏的东西放到Vuex 仓库里
+        // alert(1)
+        this.changecolor= true
+        let obj= {
+            id: this.goodsID, // 商品id
+            tag: this.base.tags, //标签
+            price: Math.ceil((this.triple*1-this.base.discount*1)*7),  //价格
+            num: 42,  //出游人数
+            image: this.imgList, //图片信息
+            title: this.info.name,
+            dest: this.startP //出发地
         }
+        if(this.collectList.length==0){
+            this.setcollectList(obj)
+        }
+         this.collectList.forEach((item)=>{
+            if(item.id==this.goodsID){
+               return
+            }
+            this.setcollectList(obj)
+        })
+
+
       } else { // 没有登录，弹出提示框，跳转到登录页面
         Dialog.alert({
           showCancelButton:true,
@@ -205,12 +253,23 @@ export default {
       this.startP = this.base.departure_city_name[0].departure_city_name
       this.endP = this.base.return_city_name[0].return_city_name
       this.senic = this.base.product_info_statistics
+      this.ishow=true
     })
   },
 }
 </script>
 
 <style lang="scss" scoped>
+    // [v-cloak] {
+    //     display:none;
+    // }
+
+.van-loading{
+    position: fixed;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%)
+}
     .page-detail{
         width:100%;
         height:100%;
@@ -440,6 +499,7 @@ export default {
             .notice {//须知
                 padding:0 20px;
                 border-top:10px solid #ececec;
+                margin-bottom: 100px;
             }
         }
 
@@ -468,6 +528,9 @@ export default {
                           font-size:20px;
                           font-weight: bold;
                           color:#363636;
+                        }
+                        .red{
+                            color: red;
                         }
                         p{
                           margin-top:5px;

@@ -21,7 +21,7 @@ const router = new Router({
     // 一级路由
     {
       path: '/',
-      name: 'home',
+      // name: 'home',
       component: () => import('./views/home/home.vue'),
       // 二级路由
       children: [
@@ -46,12 +46,8 @@ const router = new Router({
           component: () => import('./views/home/center.vue')
         },
         {
-          path: 'recommend',
-          component: () => import('./views/recommend/recommend.vue')
-        },
-        {
           path: '',
-          name: 'moren',
+          name: 'home',
           redirect: 'index'
         }
       ]
@@ -102,6 +98,11 @@ const router = new Router({
       path: '/city',
       name: 'city',
       component: () => import('./views/city/city.vue')
+    },
+    {
+      path: '/recommend',
+      name: 'recommend',
+      component: () => import('./views/recommend/recommend.vue')
     }
   ]
 })

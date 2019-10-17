@@ -50,7 +50,7 @@ export default {
   name: 'cart',
   data() {
     return {
-      checked: false,
+      checked: [],
       ishow: true,
       checkedAll: false,
       cartListId: [103254168, 102295677],
@@ -122,6 +122,7 @@ export default {
             height: 70px;
             img {
               width: 70px;
+              height: 70px;
             }
           }
           .title {

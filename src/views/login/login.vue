@@ -28,7 +28,8 @@
 import axios from 'axios'
 import { userInfo } from 'os'
 export default {
-  data () {
+  name: 'login',
+  data() {
     return {
       email: '',
       password: ''
@@ -36,11 +37,11 @@ export default {
   },
   methods: {
     // 点击左边箭头返回到个人中心页面
-    onClickLeft () {
+    onClickLeft() {
       this.$router.push('./center')
     },
     // 处理登入
-    hangleLogin () {
+    hangleLogin() {
       // console.log(1)
       axios
         .post('http://localhost:3000/api/login', {
@@ -49,7 +50,8 @@ export default {
         })
         .then(Response => {
           if (Response.data.code == 0) {
-            alert(Response.data.msg)
+            this.$toast.success(Response.data.msg)
+            // alert(Response.data.msg)
             // 登入成功后在localStoragec存用户信息
             window.localStorage.setItem(
               'userInfo',
@@ -61,7 +63,7 @@ export default {
             let path = this.$route.query.redirect || '/center'
             this.$router.replace(path)
           } else {
-            alert(Response.data.msg)
+            this.$toast.fail(Response.data.msg)
           }
         })
     }

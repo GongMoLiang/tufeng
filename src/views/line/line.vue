@@ -2,58 +2,67 @@
   <!-- 这是旅游列表页面 -->
   <div class="page-line">
     <!-- background: rgba(0,0,0,.4) -->
-
-    <van-popup v-model="show" position="right" :style="{ width: '80%', height: '100%' }">
-      <h1>出发日期</h1>
-      <span>自定义出发日期</span>
-      <h2>行程天数</h2>
-      <input type="text" placeholder="最少天数" class="left" /> ---
-      <input type="text" placeholder="最多天数" />
-      <h2>产品类型</h2>
-      <ul>
-        <li>常规团</li>
-        <li>私家包团</li>
-        <li>金品小团</li>
-      </ul>
-      <h2>人均价格</h2>
-      <input type="text" placeholder="最少价格(￥)" class="left" /> ---
-      <input type="text" placeholder="最高价格(￥)" />
-      <div class="btn">
-        <button>重置</button>
-        <button class="active" @click="closePopup">确认</button>
-      </div>
-    </van-popup>
-    <div class="detial-serch">
-      <span class="iconfont icon-fanhui" @click="backHome"></span>
-      <van-search placeholder="请输入搜索关键词" v-model="seachValue" shape="round" />
-    </div>
     <div>
-      <van-dropdown-menu>
-        <van-dropdown-item title="出发地" ref="item" @open="goCity"></van-dropdown-item>
-        <van-dropdown-item v-model="value" :options="option" />
-        <van-dropdown-item title="排序" ref="item"></van-dropdown-item>
-        <!-- <span @click="showPopup">筛选</span> -->
-        <van-dropdown-item title="筛选" ref="item2" @open="showPopup"></van-dropdown-item>
-      </van-dropdown-menu>
+      <div class="gu">
+        <van-popup v-model="show" position="right" :style="{ width: '80%', height: '100%' }">
+          <h1>出发日期</h1>
+          <span>自定义出发日期</span>
+          <h2>行程天数</h2>
+          <input type="text" placeholder="最少天数" class="left" /> ---
+          <input type="text" placeholder="最多天数" />
+          <h2>产品类型</h2>
+          <ul>
+            <li>常规团</li>
+            <li>私家包团</li>
+            <li>金品小团</li>
+          </ul>
+          <h2>人均价格</h2>
+          <input type="text" placeholder="最少价格(￥)" class="left" /> ---
+          <input type="text" placeholder="最高价格(￥)" />
+          <div class="btn">
+            <button>重置</button>
+            <button class="active" @click="closePopup">确认</button>
+          </div>
+        </van-popup>
+        <div class="detial-serch">
+          <span class="iconfont icon-fanhui" @click="backHome"></span>
+          <van-search placeholder="请输入搜索关键词" v-model="seachValue" shape="round" />
+        </div>
+        <div>
+          <van-dropdown-menu>
+            <van-dropdown-item title="出发地" ref="item" @open="goCity"></van-dropdown-item>
+            <van-dropdown-item v-model="value" :options="option" @change="handlechange(value)" />
+            <van-dropdown-item title="排序" ref="item">
+              <van-switch-cell v-model="switch1" title="包邮" />
+              <van-switch-cell v-model="switch2" title="团购" />
+            </van-dropdown-item>
+            <!-- <span @click="showPopup">筛选</span> -->
+            <van-dropdown-item title="筛选" ref="item2" @open="showPopup"></van-dropdown-item>
+          </van-dropdown-menu>
+        </div>
+      </div>
+      <linelist :value="type"></linelist>
     </div>
-    <linelist :value="type"></linelist>
   </div>
 </template>
 <script>
 import linelist from '../../componets/linelist.vue'
+import BScroll from 'better-scroll'
+import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'Line',
-
   data() {
     return {
-      value: 0,
+      value: '途风精品',
+      switch1: false,
+      switch2: false,
       option: [
-        { text: '途风精品', value: 0 },
-        { text: '多日游', value: 1 },
-        { text: '一日游', value: 2 },
-        { text: '票务', value: 3 },
-        { text: '游轮游', value: 4 },
-        { text: '接送', value: 5 }
+        { text: '途风精品', value: '途风精品' },
+        { text: '多日游', value: '多日游' },
+        { text: '一日游', value: '一日游' },
+        { text: '票务', value: '票务' },
+        { text: '邮轮游', value: '邮轮游' },
+        { text: '接送', value: '接送' }
       ],
       show: false,
       seachValue: ''
@@ -80,6 +89,8 @@ export default {
     linelist: linelist
   },
   methods: {
+    ...mapActions('linelist', ['getlineList']),
+    ...mapMutations('linelist', ['setlineList']),
     backHome() {
       this.$router.push('/index')
     },
@@ -95,15 +106,41 @@ export default {
     getValue() {
       // console.log(this.$route.params.value)
       this.seachValue = this.$route.params.value
+      // this.value = this.$route.params.value
+      this.setlineList([])
+    },
+    handlechange(value) {
+      this.seachValue = value
+      this.setlineList([])
+      this.getlineList({ type: this.type, page: 1 })
     }
   },
   created() {
     this.getValue()
+  },
+  mounted() {
+    let bS = new BScroll('.page-line', {
+      probeType: 3,
+      click: true,
+      pullUpLoad: true
+    })
+    bS.on('pullingUp', () => {
+      this.getlineList({ type: this.type, page: 2 })
+    })
   }
 }
 </script>
 <style lang="scss">
 .page-line {
+  .van-cell__title span {
+    margin: 0 38px;
+    padding: 7px 20px !important;
+  }
+  .fixed {
+    position: fixed;
+    top: 0;
+  }
+  height: 100%;
   .van-overlay {
     background-color: rgba(0, 0, 0, 0.3);
   }
