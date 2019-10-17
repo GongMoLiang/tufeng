@@ -6,7 +6,7 @@
         <img src="https://m.toursforfun.com/img/not-login.png" alt />
       </div>
       <div class="choice">
-        <div v-if="!username">
+        <div v-if="show">
           <router-link tag="span" to="/login">登入</router-link>&nbsp;|&nbsp;
           <!-- <span>登入</span>/ -->
           <router-link tag="span" to="/register">注册</router-link>
@@ -92,6 +92,13 @@ export default {
     ...mapState('collect', ['collectList']),
     length() {
       return this.collectList.length
+    },
+    show() {
+      if (!this.username) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }

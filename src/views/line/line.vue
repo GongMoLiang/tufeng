@@ -2,8 +2,8 @@
   <!-- 这是旅游列表页面 -->
   <div class="page-line">
     <!-- background: rgba(0,0,0,.4) -->
-    <div>
-      <div class="gu">
+    <div class="box">
+      <div class="gu" :class="{fixed: fshow}" :style="{'top': `${top}px`}">
         <van-popup v-model="show" position="right" :style="{ width: '80%', height: '100%' }">
           <h1>出发日期</h1>
           <span>自定义出发日期</span>
@@ -65,7 +65,11 @@ export default {
         { text: '接送', value: '接送' }
       ],
       show: false,
-      seachValue: ''
+      seachValue: '',
+      curpageNum: 1,
+      totalpage: 0,
+      fshow: false,
+      top: 0
     }
   },
   computed: {
@@ -89,7 +93,7 @@ export default {
     linelist: linelist
   },
   methods: {
-    ...mapActions('linelist', ['getlineList']),
+    ...mapActions('linelist', ['getlineList', 'total']),
     ...mapMutations('linelist', ['setlineList']),
     backHome() {
       this.$router.push('/index')
@@ -104,7 +108,6 @@ export default {
       this.show = false
     },
     getValue() {
-      // console.log(this.$route.params.value)
       this.seachValue = this.$route.params.value
       // this.value = this.$route.params.value
       this.setlineList([])
@@ -112,20 +115,39 @@ export default {
     handlechange(value) {
       this.seachValue = value
       this.setlineList([])
-      this.getlineList({ type: this.type, page: 1 })
+      this.getlineList({ type: this.type, page: this.curpageNum })
     }
   },
   created() {
     this.getValue()
   },
   mounted() {
-    let bS = new BScroll('.page-line', {
+    let bs = new BScroll('.page-line', {
       probeType: 3,
       click: true,
-      pullUpLoad: true
+      pullUpLoad: true,
+      open: true
     })
-    bS.on('pullingUp', () => {
-      this.getlineList({ type: this.type, page: 2 })
+    bs.on('scroll', data => {
+      if (data.y < 0) {
+        this.fshow = true
+        this.top = Math.abs(data.y)
+      }
+      // console.log(data)
+    })
+    bs.on('pullingUp', () => {
+      this.totalpage = Math.ceil(this.total / 10)
+      if (this.curpageNum >= this.totalpage) {
+        return
+      }
+      this.curpageNum++
+      this.getlineList({
+        type: this.type,
+        page: this.curpageNum,
+        callback: () => {
+          bs.finishPullUp()
+        }
+      })
     })
   }
 }
@@ -136,9 +158,17 @@ export default {
     margin: 0 38px;
     padding: 7px 20px !important;
   }
+  .box {
+    overflow: hidden;
+  }
   .fixed {
+    background: #fff;
     position: fixed;
-    top: 0;
+    width: 100%;
+    z-index: 999;
+    ~ ul {
+      margin-top: 120px;
+    }
   }
   height: 100%;
   .van-overlay {

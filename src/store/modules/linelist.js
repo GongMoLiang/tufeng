@@ -2,12 +2,16 @@ import axios from 'axios'
 export default {
   namespaced: true,
   state: {
-    lineList: []
+    lineList: [],
+    total: 0
   },
   getters: {},
   mutations: {
     setlineList(state, payload) {
       state.lineList = payload
+    },
+    setTotal(state, payload) {
+      state.total = payload
     }
   },
   actions: {
@@ -24,7 +28,11 @@ export default {
         })
         .then(response => {
           let result = response.data.data.product_list
+          // console.log(response.data.data)
+          let total = response.data.data.total_count
           contect.commit('setlineList', contect.state.lineList.concat(result))
+          contect.commit('setTotal', total)
+          payload.callback && payload.callback()
         })
     }
   }

@@ -165,7 +165,7 @@ import axios from 'axios'
 export default {
   name: 'Dest',
 
-  data () {
+  data() {
     return {
       hotList: [],
       recommendList: [],
@@ -177,7 +177,7 @@ export default {
   },
 
   methods: {
-    go (id) {
+    go(id) {
       // this.$router.push(`/detail/${id}`)
       this.$router.push({
         path: `/detail/${id}`,
@@ -187,15 +187,15 @@ export default {
       })
     },
 
-    goline () {
+    goline() {
       this.$router.push('/line')
     },
     handleTZ() {
-    this.$router.push('/recommend')
-   }
+      this.$router.push('/recommend')
+    }
   },
 
-  created () {
+  created() {
     axios
       .get('https://app.toursforfun.com/api/destination/default?name=')
       .then(Response => {
@@ -205,7 +205,6 @@ export default {
         this.localList = Response.data.data.ttd_product
         this.destination = Response.data.data.default_destination
         this.discountImg = Response.data.data.discount
-        console.log(Response.data)
       })
   }
 }

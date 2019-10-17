@@ -32,7 +32,7 @@
 export default {
   name: 'Order',
 
-  data() {
+  data () {
     return {
       show: false,
       actions: [{ name: '10086' }, { name: '10010' }, { name: '10000' }],
@@ -52,7 +52,7 @@ export default {
       Toast(item.name)
     },
 
-    getUserInfo() {
+    getUserInfo () {
       let userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
         .username
       // console.log(userInfo)
@@ -63,12 +63,12 @@ export default {
       }
     },
 
-    fn(id) {
+    fn (id) {
       this.id = id
     }
   },
 
-  created() {
+  created () {
     this.getUserInfo()
   }
 }

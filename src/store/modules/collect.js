@@ -5,7 +5,7 @@ export default {
     collectList: []
   },
   mutations: {
-    setcollectList(state, payload) {
+    setcollectList (state, payload) {
       state.collectList.push(payload)
     }
   }

@@ -48,7 +48,7 @@
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'cart',
-  data() {
+  data () {
     return {
       checked: [],
       ishow: true,
@@ -61,25 +61,25 @@ export default {
   },
   computed: {
     ...mapState('linelist', ['lineList']),
-    getlength() {
+    getlength () {
       // for (var i = 0; i < this.cartListId.length; i++) {
       //   this.que.push({ value: flase })
       // }
     }
   },
   methods: {
-    onClickRight() {
+    onClickRight () {
       this.ishow = !this.ishow
     },
-    onClickLeft() {
+    onClickLeft () {
       this.$router.back()
     },
-    checkAll() {
+    checkAll () {
       this.checked = true
     }
   },
 
-  created() {
+  created () {
     var that = this
     this.cartListId.forEach(item => {
       this.lineList.forEach(arr => {

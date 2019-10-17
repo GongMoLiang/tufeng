@@ -32,7 +32,8 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      userInfo: ''
     }
   },
   methods: {

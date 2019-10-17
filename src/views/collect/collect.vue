@@ -20,7 +20,7 @@ import collectlist from '../../componets/collectlist'
 export default {
   name: 'collect',
   methods: {
-    goBack() {
+    goBack () {
       this.$router.back('/center')
     }
   },

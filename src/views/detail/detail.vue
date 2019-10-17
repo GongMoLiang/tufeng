@@ -34,7 +34,7 @@
             </div>
             <!-- 价格、文字信息 -->
             <div class="text-describle">
-                <p class="price">￥{{ Math.ceil((triple*1-base.discount*1)*7) }}<span>起</span></p>
+                <p class="price">￥{{Math.abs(Math.ceil((triple*1-base.discount*1)*7)) }}<span>起</span></p>
                 <h3>{{ info.name }}</h3>
                 <!-- 小标签 -->
                 <div  class="tab">
@@ -136,7 +136,7 @@ Vue.use(Dialog)
 export default {
   data () {
     return {
-      id:0,
+      id: 0,
       current: 0,
       activeName: '1',
       language: [], // 语言
@@ -147,31 +147,31 @@ export default {
       startP: '',
       endP: '',
       senic: '',
-      goodsID: '',//商品id
-      ishow:false,
+      goodsID: '', // 商品id
+      ishow: false,
       changecolor: false
     }
   },
   computed: {
-      ...mapState('collect',['collectList'])
+    ...mapState('collect', ['collectList'])
   },
   methods: {
-      ...mapMutations('collect',['setcollectList']),
+    ...mapMutations('collect', ['setcollectList']),
     onChange (index) {
       this.current = index
     },
     goBack () { // 返回上一页
       this.$router.push({
-          name: "line",
-          params: {
-             type: this.$route.params.value
-          }
+        name: 'line',
+        params: {
+          type: this.$route.params.value
+        }
       })
     },
-    fn2(id){
-        this.id=id
-        let top=document.getElementsByClassName('content')[0].children[id].offsetTop
-         document.documentElement.scrollTop=top-26
+    fn2 (id) {
+      this.id = id
+      let top = document.getElementsByClassName('content')[0].children[id].offsetTop
+      document.documentElement.scrollTop = top - 26
     },
     shouCang () { // 添加收藏
       // 调用判断是否登录的方法，如果没有登录,则跳转到登录页面，
@@ -201,30 +201,28 @@ export default {
 
         // 方法二 把收藏的东西放到Vuex 仓库里
         // alert(1)
-        this.changecolor= true
-        let obj= {
-            id: this.goodsID, // 商品id
-            tag: this.base.tags, //标签
-            price: Math.ceil((this.triple*1-this.base.discount*1)*7),  //价格
-            num: 42,  //出游人数
-            image: this.imgList, //图片信息
-            title: this.info.name,
-            dest: this.startP //出发地
+        this.changecolor = true
+        let obj = {
+          id: this.goodsID, // 商品id
+          tag: this.base.tags, // 标签
+          price: Math.ceil((this.triple * 1 - this.base.discount * 1) * 7), // 价格
+          num: 42, // 出游人数
+          image: this.imgList, // 图片信息
+          title: this.info.name,
+          dest: this.startP // 出发地
         }
-        if(this.collectList.length==0){
-            this.setcollectList(obj)
+        if (this.collectList.length == 0) {
+          this.setcollectList(obj)
         }
-         this.collectList.forEach((item)=>{
-            if(item.id==this.goodsID){
-               return
-            }
-            this.setcollectList(obj)
+        this.collectList.forEach((item) => {
+          if (item.id == this.goodsID) {
+            return
+          }
+          this.setcollectList(obj)
         })
-
-
       } else { // 没有登录，弹出提示框，跳转到登录页面
         Dialog.alert({
-          showCancelButton:true,
+          showCancelButton: true,
           title: '提示信息',
           message: '您还没有登录，请登录'
         }).then(() => {
@@ -253,9 +251,9 @@ export default {
       this.startP = this.base.departure_city_name[0].departure_city_name
       this.endP = this.base.return_city_name[0].return_city_name
       this.senic = this.base.product_info_statistics
-      this.ishow=true
+      this.ishow = true
     })
-  },
+  }
 }
 </script>
 

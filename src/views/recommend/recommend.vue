@@ -20,7 +20,7 @@
         <div class="hot-city">
           <div class="hotcity-tabs" v-for="item in hotcity" :key="item.id">
             <div class="label">
-              <span>{{ item.tag }}</span>
+              <span>{{ item.tag? item.tag: '暂无标签' }}</span>
             </div>
             <img :src="item.image_url" alt />
             <p>{{ item.name }}</p>
@@ -43,36 +43,38 @@ import axios from 'axios'
 export default {
   name: 'Recommend',
 
-  data() {
+  data () {
     return {
       countryList: [],
-      id: 3
+      id: 3,
+      value: ''
     }
   },
   methods: {
-    fn(id) {
+    fn (id) {
       this.id = id
     },
-    goBack () { // 返回上一页
+    goBack () {
+      // 返回上一页
       this.$router.back()
     }
   },
   computed: {
-    hotcity: function() {
+    hotcity: function () {
       var _this = this
-      return this.countryList.filter(function(item) {
+      return this.countryList.filter(function (item) {
         return item.id === _this.id
       })[0].city
     },
 
-    hotcountry: function() {
+    hotcountry: function () {
       var _this = this
-      return this.countryList.filter(function(item) {
+      return this.countryList.filter(function (item) {
         return item.id === _this.id
       })[0].country
     },
 
-    isShow() {
+    isShow () {
       if (this.hotcountry.length > 0) {
         return true
       } else {
@@ -80,7 +82,7 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     axios
       .get('https://app.toursforfun.com/api/destination/v1')
       .then(Response => {
@@ -101,18 +103,18 @@ export default {
 
   .search {
     @include border-bottom;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: space-around;
     height: 44px;
     width: 100%;
     i {
-      width:30px;
-      font-size:22px;
+      width: 30px;
+      font-size: 22px;
     }
   }
   .searchBar {
-    flex:1;
+    flex: 1;
     padding: 5px;
     // background: red;
   }

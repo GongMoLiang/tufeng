@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     ...mapActions('linelist', ['getlineList']),
-    //携带id去详情页面
+    // 携带id去详情页面
     goDetail(id) {
       this.$router.push({
         name: 'detail',

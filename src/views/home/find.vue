@@ -13,10 +13,7 @@
         >{{ item.name }}</li>
       </ul>
       <ul class="right">
-        <li v-for="item in destlist" :key="item.id" @click="goLine">{{item.name}}</li>
-        <!-- <li>纽约</li>
-        <li>纽约</li>
-        <li>纽约</li>-->
+        <li v-for="item in destlist" :key="item.id" @click="goLine">{{item.name? item.name:"暂无数据"}}</li>
       </ul>
     </div>
   </div>
@@ -28,22 +25,26 @@ export default {
     return {
       citylist: [],
       id: 51
+      // destlist: []
     }
   },
   computed: {
-    destlist: function () {
-      var _this = this
-      return this.citylist.filter(function (item) {
-        return item.cid == _this.id
+    destlist() {
+      let arr = this.citylist.filter(item => {
+        return item.cid == this.id
       })[0].children
+      if (arr) {
+        return arr
+      } else {
+        return []
+      }
     }
   },
   methods: {
-    fn (e) {
+    fn(e) {
       this.id = e
     },
-    goLine (id) {
-      // this.$router.push('/line')
+    goLine(id) {
       this.$router.push({
         path: '/line',
         params: {
@@ -56,7 +57,6 @@ export default {
     axios
       .get('https://app.toursforfun.com//api/article/menu')
       .then(Response => {
-        // console.log(Response.data.data)
         this.citylist = Response.data.data
       })
   }
@@ -74,11 +74,9 @@ export default {
     }
   }
   .find-text {
-    // overflow: hidden;
     display: flex;
     .left {
       margin-top: 2px;
-      // height: 600px;
       overflow: hidden;
       li {
         height: 48px;
@@ -98,7 +96,6 @@ export default {
       flex: 1;
       display: flex;
       margin-top: 10px;
-      //   width: 100%;
       justify-content: space-around;
       align-content: flex-start;
       padding: 0 10px;
