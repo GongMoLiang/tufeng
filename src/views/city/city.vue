@@ -22,7 +22,7 @@
           </ul>
           <p>B</p>
           <ul>
-            <li>巴黎</li>
+            <router-link tag="li" to="/line">巴黎</router-link>
           </ul>
           <p>D</p>
           <ul>
@@ -34,33 +34,51 @@
           </ul>
           <p>J</p>
           <ul>
-            <li>旧金山</li>
+            <router-link tag="li" to="/line">旧金山</router-link>
           </ul>
           <p>K</p>
           <ul>
-            <li>旧金山</li>
+            <li>坎昆</li>
+            <li>卡尔加里</li>
           </ul>
-          <p>K</p>
+          <p>L</p>
           <ul>
-            <li>旧金山</li>
+            <li>罗德岱堡</li>
+            <router-link tag="li" to="/line">洛杉矶</router-link>
+            <li>拉斯维家斯</li>
           </ul>
-          <p>K</p>
+          <p>M</p>
           <ul>
-            <li>旧金山</li>
+            <li>迈阿密</li>
+            <li>蒙特利尔</li>
+            <li>墨西哥城</li>
           </ul>
-          <p>K</p>
+          <p>N</p>
           <ul>
-            <li>旧金山</li>
+            <router-link tag="li" to="/line">纽约</router-link>
           </ul>
-          <p>K</p>
+          <p>T</p>
           <ul>
-            <li>旧金山</li>
+            <li>檀香山</li>
+          </ul>
+          <p>W</p>
+          <ul>
+            <li>温哥华</li>
+          </ul>
+          <p>X</p>
+          <ul>
+            <li>西雅图</li>
+          </ul>
+          <p>Y</p>
+          <ul>
+            <li>盐湖城</li>
+            <li>亚特兰大</li>
           </ul>
         </div>
       </div>
       <div class="right">
         <ul>
-          <li v-for="item in 13" :key="item">A</li>
+          <li v-for="(item,index) in list" :key="index" @click="fixed(index)">{{item}}</li>
         </ul>
       </div>
     </div>
@@ -70,11 +88,24 @@
 <script>
 export default {
   name: 'City',
-
+  data() {
+    return {
+      list: ['A', 'B', 'D', 'F', 'J', 'k', 'L', 'M', 'N', 'T', 'W', 'X', 'Y']
+    }
+  },
   methods: {
     // 返回上一页
-    goBack () {
+    goBack() {
       this.$router.back()
+    },
+    fixed(index) {
+      let top = document.getElementsByTagName('p')[index].offsetTop
+      let dom = document.getElementsByClassName('left')[0]
+      dom.scrollTop = top
+      this.$toast({
+        message: document.getElementsByTagName('p')[index].innerHTML,
+        duration: 1200
+      })
     }
   }
 }
@@ -133,7 +164,8 @@ export default {
       right: 10px;
 
       li {
-        font-size: 14px;
+        font-size: 16px;
+        margin: 4px 0;
         line-height: 22px;
         text-align: center;
         color: #363636;
@@ -147,6 +179,7 @@ export default {
     }
   }
   .city-index {
+    margin-bottom: 300px;
     p {
       font-size: 16px;
       color: #363636;
@@ -170,5 +203,13 @@ export default {
       }
     }
   }
+}
+.van-toast--text {
+  width: 50px;
+  height: 100px;
+  font-size: 30px;
+  color: #fff;
+  background-color: rgba(50, 50, 51, 0.7);
+  border-radius: 100px;
 }
 </style>

@@ -43,7 +43,7 @@ import axios from 'axios'
 export default {
   name: 'Recommend',
 
-  data () {
+  data() {
     return {
       countryList: [],
       id: 3,
@@ -51,30 +51,30 @@ export default {
     }
   },
   methods: {
-    fn (id) {
+    fn(id) {
       this.id = id
     },
-    goBack () {
+    goBack() {
       // 返回上一页
       this.$router.back()
     }
   },
   computed: {
-    hotcity: function () {
+    hotcity: function() {
       var _this = this
-      return this.countryList.filter(function (item) {
+      return this.countryList.filter(function(item) {
         return item.id === _this.id
       })[0].city
     },
 
-    hotcountry: function () {
+    hotcountry: function() {
       var _this = this
-      return this.countryList.filter(function (item) {
+      return this.countryList.filter(function(item) {
         return item.id === _this.id
       })[0].country
     },
 
-    isShow () {
+    isShow() {
       if (this.hotcountry.length > 0) {
         return true
       } else {
@@ -82,7 +82,7 @@ export default {
       }
     }
   },
-  created () {
+  created() {
     axios
       .get('https://app.toursforfun.com/api/destination/v1')
       .then(Response => {

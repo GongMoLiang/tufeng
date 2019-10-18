@@ -17,8 +17,8 @@
             <li>金品小团</li>
           </ul>
           <h2>人均价格</h2>
-          <input type="text" placeholder="最少价格(￥)" class="left" /> ---
-          <input type="text" placeholder="最高价格(￥)" />
+          <input type="text" placeholder="最少价格(￥)" class="left" v-model="num1" /> ---
+          <input type="text" placeholder="最高价格(￥)" v-model="num2" />
           <div class="btn">
             <button>重置</button>
             <button class="active" @click="closePopup">确认</button>
@@ -31,12 +31,18 @@
         <div>
           <van-dropdown-menu>
             <van-dropdown-item title="出发地" ref="item" @open="goCity"></van-dropdown-item>
-            <van-dropdown-item v-model="value" :options="option" @change="handlechange(value)" />
-            <van-dropdown-item title="排序" ref="item">
-              <van-switch-cell v-model="switch1" title="包邮" />
-              <van-switch-cell v-model="switch2" title="团购" />
-            </van-dropdown-item>
-            <!-- <span @click="showPopup">筛选</span> -->
+            <van-dropdown-item
+              v-model="value"
+              title="途风精品"
+              :options="option"
+              @change="handlechange(value)"
+            />
+            <van-dropdown-item
+              v-model="value"
+              :options="option1"
+              title="排序"
+              @change="handleorder(value)"
+            ></van-dropdown-item>
             <van-dropdown-item title="筛选" ref="item2" @open="showPopup"></van-dropdown-item>
           </van-dropdown-menu>
         </div>
@@ -50,12 +56,12 @@ import linelist from '../../componets/linelist.vue'
 import BScroll from 'better-scroll'
 import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
-  name: 'Line',
+  name: 'lvline',
   data() {
     return {
+      num1: '',
+      num2: '',
       value: '途风精品',
-      switch1: false,
-      switch2: false,
       option: [
         { text: '途风精品', value: '途风精品' },
         { text: '多日游', value: '多日游' },
@@ -63,6 +69,12 @@ export default {
         { text: '票务', value: '票务' },
         { text: '邮轮游', value: '邮轮游' },
         { text: '接送', value: '接送' }
+      ],
+      option1: [
+        { text: '综合排序', value: '0' },
+        { text: '销量由高到低', value: '1' },
+        { text: '价格由低到高', value: '2' },
+        { text: '价格由高到低', value: '3' }
       ],
       show: false,
       seachValue: '',
@@ -94,7 +106,13 @@ export default {
   },
   methods: {
     ...mapActions('linelist', ['getlineList', 'total']),
-    ...mapMutations('linelist', ['setlineList']),
+    ...mapMutations('linelist', [
+      'setlineList',
+      'changelineList',
+      'orderprice',
+      'orderprice2',
+      'pick'
+    ]),
     backHome() {
       this.$router.push('/index')
     },
@@ -106,6 +124,7 @@ export default {
     },
     closePopup() {
       this.show = false
+      this.pick([this.num1, this.num2])
     },
     getValue() {
       this.seachValue = this.$route.params.value
@@ -116,6 +135,16 @@ export default {
       this.seachValue = value
       this.setlineList([])
       this.getlineList({ type: this.type, page: this.curpageNum })
+    },
+    // 处理排序问题
+    handleorder(value) {
+      if (value == 1) {
+        this.changelineList()
+      } else if (value == 2) {
+        this.orderprice()
+      } else if (value == 3) {
+        this.orderprice2()
+      }
     }
   },
   created() {
@@ -154,9 +183,10 @@ export default {
 </script>
 <style lang="scss">
 .page-line {
-  .van-cell__title span {
-    margin: 0 38px;
-    padding: 7px 20px !important;
+  .van-popup .van-cell__title span {
+    margin: 0 3px;
+    width: 300px;
+    padding: 7px 40px !important;
   }
   .box {
     overflow: hidden;

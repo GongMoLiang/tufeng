@@ -12,9 +12,15 @@
           :class="{active: id==item.cid}"
         >{{ item.name }}</li>
       </ul>
-      <ul class="right">
-        <li v-for="item in destlist" :key="item.id" @click="goLine">{{item.name? item.name:"暂无数据"}}</li>
-      </ul>
+      <keep-alive>
+        <ul class="right">
+          <li
+            v-for="item in destlist"
+            :key="item.id"
+            @click="goLine"
+          >{{item.name? item.name:"暂无数据"}}</li>
+        </ul>
+      </keep-alive>
     </div>
   </div>
 </template>

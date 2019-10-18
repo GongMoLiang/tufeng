@@ -12,6 +12,33 @@ export default {
     },
     setTotal(state, payload) {
       state.total = payload
+    },
+    changelineList(state, payload) {
+      state.lineList.sort((a, b) => {
+        return b.order_count - a.order_count
+      })
+    },
+    orderprice(state, payload) {
+      state.lineList.sort((a, b) => {
+        return a.default_price - b.default_price
+      })
+    },
+    orderprice2(state, payload) {
+      state.lineList.sort((a, b) => {
+        return b.default_price - a.default_price
+      })
+    },
+    pick(state, payload) {
+      let arr = []
+      state.lineList.forEach(item => {
+        if (
+          item.default_price * 7 > Number(payload[0]) &&
+          item.default_price * 7 < Number(payload[1])
+        ) {
+          arr.push(item)
+        }
+      })
+      state.lineList = arr
     }
   },
   actions: {
