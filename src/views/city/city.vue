@@ -26,7 +26,7 @@
           </ul>
           <p>D</p>
           <ul>
-            <li>多伦多</li>
+            <router-link tag="li" to="/line">多伦多</router-link>
           </ul>
           <p>F</p>
           <ul>
@@ -38,8 +38,8 @@
           </ul>
           <p>K</p>
           <ul>
-            <li>坎昆</li>
-            <li>卡尔加里</li>
+            <router-link tag="li" to="/line">坎昆</router-link>
+            <router-link tag="li" to="/line">卡尔加里</router-link>
           </ul>
           <p>L</p>
           <ul>
@@ -63,11 +63,11 @@
           </ul>
           <p>W</p>
           <ul>
-            <li>温哥华</li>
+            <router-link tag="li" to="/line">温哥华</router-link>
           </ul>
           <p>X</p>
           <ul>
-            <li>西雅图</li>
+            <router-link tag="li" to="/line">西雅图</router-link>
           </ul>
           <p>Y</p>
           <ul>
@@ -189,8 +189,6 @@ export default {
     }
 
     ul {
-      // margin: 0px 42px 0px 24px;
-
       li {
         height: 50px;
         font-size: 14px;
@@ -207,8 +205,9 @@ export default {
 .van-toast--text {
   width: 50px;
   height: 100px;
-  font-size: 30px;
+  font-size: 40px;
   color: #fff;
+  font-weight: bold;
   background-color: rgba(50, 50, 51, 0.7);
   border-radius: 100px;
 }

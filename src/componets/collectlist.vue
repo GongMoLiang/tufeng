@@ -9,10 +9,10 @@
       <dl class="right">
         <dt>{{item.title}}</dt>
         <dd class="tag">
-          <span v-for="(arr, index) in item.tag" :key="index">{{arr.name}}</span>
+          <span v-for="(arr, index) in 1" :key="index">{{item.tag[arr].name}}</span>
         </dd>
         <dd class="data">
-          <div class="num">{{ Math.ceil(Math.random() * 100) }}</div>
+          <div class="num">{{ Math.ceil(Math.random() * 200) }}出游</div>
           <div class="money">
             <span>{{item.price}}</span>起
           </div>
@@ -52,7 +52,6 @@ export default {
         width: 100%;
         position: absolute;
         bottom: 0;
-        // padding: 0 4px;
         font-size: 14px;
         color: #fff;
         line-height: 34px;
@@ -66,9 +65,9 @@ export default {
       margin-left: 10px;
       margin-top: 5px;
       dt {
-        height: 60px;
+        height: 58px;
         width: 100%;
-        line-height: 20px;
+        line-height: 25px;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
@@ -85,6 +84,7 @@ export default {
           height: 16px;
           font-size: 12px;
           margin-right: 10px;
+          margin-bottom: 10px;
           padding: 2px 6px;
           color: #fff;
           border-radius: 2px;

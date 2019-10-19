@@ -47,12 +47,16 @@ export default {
     return {
       countryList: [],
       id: 3,
-      value: ''
+      value: '',
+      hotcountry: []
     }
   },
   methods: {
     fn(id) {
       this.id = id
+      this.hotcountry = this.countryList.filter((item)=> {
+        return item.id === this.id
+      })[0].country
     },
     goBack() {
       // 返回上一页
@@ -66,14 +70,6 @@ export default {
         return item.id === _this.id
       })[0].city
     },
-
-    hotcountry: function() {
-      var _this = this
-      return this.countryList.filter(function(item) {
-        return item.id === _this.id
-      })[0].country
-    },
-
     isShow() {
       if (this.hotcountry.length > 0) {
         return true

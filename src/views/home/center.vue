@@ -66,6 +66,10 @@
         <i class="iconfont icon-shezhi"></i>
         <span>设置</span>
       </li>
+      <li v-show="!show" @click="noLogin">
+        <i class="iconfont icon-084tuichu"></i>
+        <span>退出登入</span>
+      </li>
     </ul>
   </div>
 </template>
@@ -75,7 +79,7 @@ export default {
   name: 'center',
   data() {
     return {
-      username: JSON.parse(window.localStorage.getItem('userInfo')).username
+      username: ''
     }
   },
   methods: {
@@ -86,6 +90,10 @@ export default {
     // 去收藏页面
     goCollect() {
       this.$router.push('./collect')
+    },
+    noLogin() {
+      window.localStorage.removeItem('userInfo')
+      location.reload()
     }
   },
   computed: {
@@ -99,6 +107,12 @@ export default {
       } else {
         return false
       }
+    }
+  },
+  mounted() {
+    let user = JSON.parse(window.localStorage.getItem('userInfo'))
+    if (user) {
+      this.username = user.username
     }
   }
 }

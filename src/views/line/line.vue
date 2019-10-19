@@ -33,7 +33,7 @@
             <van-dropdown-item title="出发地" ref="item" @open="goCity"></van-dropdown-item>
             <van-dropdown-item
               v-model="value"
-              title="途风精品"
+              :title="text"
               :options="option"
               @change="handlechange(value)"
             />
@@ -61,6 +61,7 @@ export default {
     return {
       num1: '',
       num2: '',
+      text: '途风精品',
       value: '途风精品',
       option: [
         { text: '途风精品', value: '途风精品' },
@@ -124,7 +125,11 @@ export default {
     },
     closePopup() {
       this.show = false
+      if (this.num1 == '' || this.num2 == '') {
+        return
+      }
       this.pick([this.num1, this.num2])
+      this.num1 = this.num2 = ''
     },
     getValue() {
       this.seachValue = this.$route.params.value
@@ -161,6 +166,8 @@ export default {
       if (data.y < 0) {
         this.fshow = true
         this.top = Math.abs(data.y)
+      } else {
+        this.fshow = false
       }
       // console.log(data)
     })
@@ -169,6 +176,11 @@ export default {
       if (this.curpageNum >= this.totalpage) {
         return
       }
+      this.$toast.loading({
+        mask: true,
+        message: '加载中...',
+        duration: 4000
+      })
       this.curpageNum++
       this.getlineList({
         type: this.type,
@@ -192,10 +204,10 @@ export default {
     overflow: hidden;
   }
   .fixed {
+    z-index: 12;
     background: #fff;
     position: fixed;
     width: 100%;
-    z-index: 999;
     ~ ul {
       margin-top: 120px;
     }

@@ -45,7 +45,7 @@ export default {
     hangleLogin() {
       // console.log(1)
       axios
-        .post('http://localhost:3000/api/login', {
+        .post('http://134.175.52.84:3000/api/login', {
           email: this.email,
           password: this.password
         })

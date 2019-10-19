@@ -7,7 +7,7 @@
           <i class="iconfont icon-fanhui" @click="goBack"></i>
         </template>
         <template #right>
-          <p class="edit">编辑</p>
+          <p class="edit" @click="changetext">{{ msg }}</p>
         </template>
       </van-nav-bar>
     </div>
@@ -19,9 +19,23 @@
 import collectlist from '../../componets/collectlist'
 export default {
   name: 'collect',
+  data() {
+    return {
+      ishwo: false,
+      msg: '编辑'
+    }
+  },
   methods: {
-    goBack () {
+    goBack() {
       this.$router.back('/center')
+    },
+    changetext() {
+      this.ishwo = !this.ishwo
+      if (this.ishwo) {
+        this.msg = '完成'
+      } else {
+        this.msg = '编辑'
+      }
     }
   },
   components: {

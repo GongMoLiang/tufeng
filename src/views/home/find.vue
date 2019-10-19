@@ -27,28 +27,20 @@
 <script>
 import axios from 'axios'
 export default {
+  name: 'find',
   data() {
     return {
       citylist: [],
-      id: 51
-      // destlist: []
-    }
-  },
-  computed: {
-    destlist() {
-      let arr = this.citylist.filter(item => {
-        return item.cid == this.id
-      })[0].children
-      if (arr) {
-        return arr
-      } else {
-        return []
-      }
+      id: 51,
+      destlist: []
     }
   },
   methods: {
     fn(e) {
       this.id = e
+      this.destlist = this.citylist.filter(item => {
+        return item.cid == this.id
+      })[0].children
     },
     goLine(id) {
       this.$router.push({
@@ -64,6 +56,7 @@ export default {
       .get('https://app.toursforfun.com//api/article/menu')
       .then(Response => {
         this.citylist = Response.data.data
+        this.destlist = this.citylist[0].children
       })
   }
 }

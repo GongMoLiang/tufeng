@@ -32,7 +32,7 @@
 export default {
   name: 'Order',
 
-  data () {
+  data() {
     return {
       show: false,
       actions: [{ name: '10086' }, { name: '10010' }, { name: '10000' }],
@@ -42,19 +42,18 @@ export default {
   },
 
   methods: {
-    gotologin () {
+    gotologin() {
       this.$router.push('/login')
     },
 
-    onSelect (item) {
+    onSelect(item) {
       // 点击选项时默认不会关闭菜单，可以手动关闭
       this.show = true
       Toast(item.name)
     },
 
-    getUserInfo () {
+    getUserInfo() {
       let userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
-        .username
       // console.log(userInfo)
       if (userInfo) {
         this.isShow = true
@@ -63,12 +62,12 @@ export default {
       }
     },
 
-    fn (id) {
+    fn(id) {
       this.id = id
     }
   },
 
-  created () {
+  created() {
     this.getUserInfo()
   }
 }

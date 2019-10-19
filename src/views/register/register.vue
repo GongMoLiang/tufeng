@@ -23,7 +23,7 @@
 import axios from 'axios'
 export default {
   name: 'register',
-  data () {
+  data() {
     return {
       username: '',
       email: '',
@@ -32,12 +32,12 @@ export default {
   },
   methods: {
     // 点击左边箭头返回到个人中心页面
-    onClickLeft () {
+    onClickLeft() {
       this.$router.push('./center')
     },
-    hangleRegister () {
+    hangleRegister() {
       axios
-        .post('http://localhost:3000/api/register', {
+        .post('http://134.175.52.84:3000/api/register', {
           username: this.username,
           email: this.email,
           password: this.password
@@ -45,10 +45,8 @@ export default {
         .then(Response => {
           if (Response.data.code === 0) {
             this.$toast.success(Response.data.msg)
-            // alert(Response.data.msg)
             this.$router.push('/login')
           } else {
-            // alert(Response.data.msg)
             this.$toast.fail(Response.data.msg)
           }
         })

@@ -113,7 +113,7 @@
 import axios from 'axios'
 export default {
   name: 'home',
-  data () {
+  data() {
     return {
       imagesList: [], // 轮播图列表
       destinaList: [], // 热门目的地列表
@@ -122,7 +122,7 @@ export default {
     }
   },
   methods: {
-    goLine (e) {
+    goLine(e) {
       let tep = e.currentTarget.children[1].innerHTML
       this.$router.push({
         name: 'line',
@@ -131,13 +131,13 @@ export default {
         }
       })
     },
-    handleTZ () {
+    handleTZ() {
       this.$router.push({
         name: 'recommend'
       })
     }
   },
-  created () {
+  created() {
     axios
       .get('https://app.toursforfun.com/api/homepage/banner/v1.5.0')
       .then(response => {
@@ -145,14 +145,14 @@ export default {
         this.imagesList = result.link
         this.destinaList = result.hot_destination
       }),
-    axios
-      .get('https://app.toursforfun.com/api/homepage/product/new_discount')
-      .then(response => {
-        let consult = response.data.data
-        this.onSalePic = consult.discount.image
-        this.newlineList = consult.new_product.list
-        // console.log(this.newlineList)
-      })
+      axios
+        .get('https://app.toursforfun.com/api/homepage/product/new_discount')
+        .then(response => {
+          let consult = response.data.data
+          this.onSalePic = consult.discount.image
+          this.newlineList = consult.new_product.list
+          // console.log(this.newlineList)
+        })
   }
 }
 </script>
@@ -252,7 +252,7 @@ export default {
       overflow-x: auto;
       white-space: nowrap;
       ul {
-        width: 920px;
+        width: 1000px;
         li {
           float: left;
           margin-right: 10px;
