@@ -28,7 +28,7 @@
 import axios from 'axios'
 export default {
   name: 'find',
-  data() {
+  data () {
     return {
       citylist: [],
       id: 51,
@@ -36,22 +36,23 @@ export default {
     }
   },
   methods: {
-    fn(e) {
+    fn (e) {
       this.id = e
       this.destlist = this.citylist.filter(item => {
         return item.cid == this.id
       })[0].children
     },
-    goLine(id) {
+    goLine (e) {
+      let tep = e.currentTarget.innerHTML
       this.$router.push({
-        path: '/line',
+        name: 'line',
         params: {
-          id: id
+          value: tep
         }
       })
     }
   },
-  created() {
+  created () {
     axios
       .get('https://app.toursforfun.com//api/article/menu')
       .then(Response => {

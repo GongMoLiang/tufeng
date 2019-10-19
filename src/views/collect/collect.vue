@@ -19,17 +19,17 @@
 import collectlist from '../../componets/collectlist'
 export default {
   name: 'collect',
-  data() {
+  data () {
     return {
       ishwo: false,
       msg: '编辑'
     }
   },
   methods: {
-    goBack() {
+    goBack () {
       this.$router.back('/center')
     },
-    changetext() {
+    changetext () {
       this.ishwo = !this.ishwo
       if (this.ishwo) {
         this.msg = '完成'

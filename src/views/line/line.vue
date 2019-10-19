@@ -31,12 +31,7 @@
         <div>
           <van-dropdown-menu>
             <van-dropdown-item title="出发地" ref="item" @open="goCity"></van-dropdown-item>
-            <van-dropdown-item
-              v-model="value"
-              :title="text"
-              :options="option"
-              @change="handlechange(value)"
-            />
+            <van-dropdown-item v-model="value" :options="option" @change="handlechange(value)" />
             <van-dropdown-item
               v-model="value"
               :options="option1"
@@ -57,11 +52,10 @@ import BScroll from 'better-scroll'
 import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'lvline',
-  data() {
+  data () {
     return {
       num1: '',
       num2: '',
-      text: '途风精品',
       value: '途风精品',
       option: [
         { text: '途风精品', value: '途风精品' },
@@ -86,7 +80,7 @@ export default {
     }
   },
   computed: {
-    type() {
+    type () {
       if (this.seachValue == '途风精品') {
         return 'boutique'
       } else if (this.seachValue == '一日游') {
@@ -114,16 +108,16 @@ export default {
       'orderprice2',
       'pick'
     ]),
-    backHome() {
+    backHome () {
       this.$router.push('/index')
     },
-    showPopup() {
+    showPopup () {
       this.show = true
     },
-    goCity() {
+    goCity () {
       this.$router.push('/city')
     },
-    closePopup() {
+    closePopup () {
       this.show = false
       if (this.num1 == '' || this.num2 == '') {
         return
@@ -131,18 +125,27 @@ export default {
       this.pick([this.num1, this.num2])
       this.num1 = this.num2 = ''
     },
-    getValue() {
-      this.seachValue = this.$route.params.value
-      // this.value = this.$route.params.value
+    getValue () {
+      let cval = this.$route.params.value
+      this.seachValue = cval
+      if (
+        cval === '多日游' ||
+        cval === '一日游' ||
+        cval === '邮轮游' ||
+        cval === '票务' ||
+        cval === '接送'
+      ) {
+        this.value = this.$route.params.value
+      }
       this.setlineList([])
     },
-    handlechange(value) {
+    handlechange (value) {
       this.seachValue = value
       this.setlineList([])
       this.getlineList({ type: this.type, page: this.curpageNum })
     },
     // 处理排序问题
-    handleorder(value) {
+    handleorder (value) {
       if (value == 1) {
         this.changelineList()
       } else if (value == 2) {
@@ -152,10 +155,10 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     this.getValue()
   },
-  mounted() {
+  mounted () {
     let bs = new BScroll('.page-line', {
       probeType: 3,
       click: true,

@@ -41,7 +41,7 @@ export default {
   methods: {
     ...mapActions('linelist', ['getlineList']),
     // 携带id去详情页面
-    goDetail(id) {
+    goDetail (id) {
       this.$router.push({
         name: 'detail',
         params: {
@@ -51,7 +51,7 @@ export default {
       })
     }
   },
-  created() {
+  created () {
     // console.log(this.value)
     this.getlineList({ type: this.value, page: this.curpageNum })
   }

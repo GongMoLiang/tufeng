@@ -22,27 +22,27 @@
           <h2>产品分类</h2>
           <div class="slider">
             <ul>
-              <li>
+              <li @click="goLine">
                 <img src="../../assets/images/boutique.png" alt />
                 <span>精品游</span>
               </li>
-              <li>
+              <li @click="goLine">
                 <img src="../../assets/images/tour.png" alt />
                 <span>多日游</span>
               </li>
-              <li>
+              <li @click="goLine">
                 <img src="../../assets/images/activity.png" alt />
                 <span>一日游</span>
               </li>
-              <li>
+              <li @click="goLine">
                 <img src="../../assets/images/ticket.png" alt />
                 <span>票务</span>
               </li>
-              <li>
+              <li @click="goLine">
                 <img src="../../assets/images/cruise.png" alt />
                 <span>邮轮游</span>
               </li>
-              <li>
+              <li @click="goLine">
                 <img src="../../assets/images/custom.png" alt />
                 <span>定制旅行</span>
               </li>
@@ -59,12 +59,7 @@
         <div class="hot-recommend">
           <h2>热门推荐</h2>
           <div class="content">
-            <div
-              class="single-hot"
-              v-for="item in recommendList"
-              :key="item.id"
-              @click="go(item.id)"
-            >
+            <div class="single-hot" v-for="item in recommendList" :key="item.id" @click="goline">
               <img :src="item.image_url" alt />
               <span>{{ item.title }}</span>
             </div>
@@ -81,25 +76,14 @@
           </div>
           <div class="attractions-content">
             <div class="single-attractions" v-for="item in hotList" :key="item.tour_city_id">
-              <img
+              <!-- <img
                 src="https://toursforfun.tff.bz/images/lincoln_memorial_washington_dc.jpg?imageView2/1/w/154/h/188/q/80/format/jpg"
                 alt
-              />
+              />-->
+
+              <img :src="`https://toursforfun.tff.bz/images/${item.image}`" alt />
               <span>{{ item.name }}</span>
             </div>
-            <!-- "lincoln_memorial_washington_dc.jpg" -->
-            <!-- <div class="single-attractions">
-              <img src="../../assets/images/lincoln_memorial_washington_dc.jpg" alt />
-              <span>林肯纪念堂</span>
-            </div>
-            <div class="single-attractions">
-              <img src="../../assets/images/lincoln_memorial_washington_dc.jpg" alt />
-              <span>林肯纪念堂</span>
-            </div>
-            <div class="single-attractions" style="margin-right:0px;">
-              <img src="../../assets/images/lincoln_memorial_washington_dc.jpg" alt />
-              <span>林肯纪念堂</span>
-            </div>-->
           </div>
         </div>
         <!-- 优惠专区 -->
@@ -120,7 +104,7 @@
                   <div class="price">
                     <span class="price-value">
                       ￥{{ item.default_price*7}}
-                      <span class="price-qi">起</span>
+                      <span class="price-qi">起&emsp;</span>
                     </span>
                   </div>
                 </div>
@@ -144,7 +128,7 @@
                   <div class="price">
                     <span class="price-value">
                       ￥{{ item.default_price*7 }}
-                      <span class="price-qi">起</span>
+                      <span class="price-qi">起&emsp;</span>
                     </span>
                   </div>
                 </div>
@@ -165,7 +149,7 @@ import axios from 'axios'
 export default {
   name: 'Dest',
 
-  data() {
+  data () {
     return {
       hotList: [],
       recommendList: [],
@@ -177,25 +161,24 @@ export default {
   },
 
   methods: {
-    go(id) {
-      // this.$router.push(`/detail/${id}`)
+    goLine (e) {
+      let tep = e.currentTarget.children[1].innerHTML
       this.$router.push({
-        path: `/detail/${id}`,
+        name: 'line',
         params: {
-          id: id
+          value: tep
         }
       })
     },
-
-    goline() {
+    goline () {
       this.$router.push('/line')
     },
-    handleTZ() {
+    handleTZ () {
       this.$router.push('/recommend')
     }
   },
 
-  created() {
+  created () {
     axios
       .get('https://app.toursforfun.com/api/destination/default?name=')
       .then(Response => {
@@ -432,7 +415,7 @@ h2 {
         // margin-right: 2.66%;
 
         img {
-          width: 100%;
+          width: 78px;
           height: 104px;
           border-radius: 4px;
         }

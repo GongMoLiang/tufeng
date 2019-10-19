@@ -11,7 +11,8 @@
               <li :class="{active: id==2}" @click="fn2(2)">行程</li>
               <li :class="{active: id==3}" @click="fn2(3)">须知</li>
           </ul>
-          <i class="iconfont icon-weibiaoti--"></i>
+          <router-link tag="i" class="iconfont icon-weibiaoti--" to="/card"></router-link>
+          <!-- <i ></i> -->
       </div>
 
       <!-- 详情信息 -->

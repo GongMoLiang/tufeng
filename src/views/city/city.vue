@@ -88,17 +88,17 @@
 <script>
 export default {
   name: 'City',
-  data() {
+  data () {
     return {
       list: ['A', 'B', 'D', 'F', 'J', 'k', 'L', 'M', 'N', 'T', 'W', 'X', 'Y']
     }
   },
   methods: {
     // 返回上一页
-    goBack() {
+    goBack () {
       this.$router.back()
     },
-    fixed(index) {
+    fixed (index) {
       let top = document.getElementsByTagName('p')[index].offsetTop
       let dom = document.getElementsByClassName('left')[0]
       dom.scrollTop = top

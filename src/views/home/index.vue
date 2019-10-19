@@ -76,7 +76,7 @@
       <h2>热门目的地</h2>
       <div class="assit-box">
         <ul>
-          <li v-for="item in destinaList" :key="item.id">
+          <li v-for="item in destinaList" :key="item.id" @click="goLine">
             <img :src="item.image" />
             <p>{{ item.title }}</p>
           </li>
@@ -93,7 +93,7 @@
     <div class="new-online">
       <div class="new-word">
         <h2>新品上线</h2>
-        <span>查看更多></span>
+        <router-link tag="span" to="/line">查看更多</router-link>
       </div>
       <ul>
         <li v-for="newOn in newlineList" :key="newOn.id">
@@ -144,15 +144,15 @@ export default {
         let result = response.data.data
         this.imagesList = result.link
         this.destinaList = result.hot_destination
-      }),
-      axios
-        .get('https://app.toursforfun.com/api/homepage/product/new_discount')
-        .then(response => {
-          let consult = response.data.data
-          this.onSalePic = consult.discount.image
-          this.newlineList = consult.new_product.list
-          // console.log(this.newlineList)
-        })
+      })
+    axios
+      .get('https://app.toursforfun.com/api/homepage/product/new_discount')
+      .then(response => {
+        let consult = response.data.data
+        this.onSalePic = consult.discount.image
+        this.newlineList = consult.new_product.list
+        // console.log(this.newlineList)
+      })
   }
 }
 </script>

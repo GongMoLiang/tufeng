@@ -7,28 +7,28 @@ export default {
   },
   getters: {},
   mutations: {
-    setlineList(state, payload) {
+    setlineList (state, payload) {
       state.lineList = payload
     },
-    setTotal(state, payload) {
+    setTotal (state, payload) {
       state.total = payload
     },
-    changelineList(state, payload) {
+    changelineList (state, payload) {
       state.lineList.sort((a, b) => {
         return b.order_count - a.order_count
       })
     },
-    orderprice(state, payload) {
+    orderprice (state, payload) {
       state.lineList.sort((a, b) => {
         return a.default_price - b.default_price
       })
     },
-    orderprice2(state, payload) {
+    orderprice2 (state, payload) {
       state.lineList.sort((a, b) => {
         return b.default_price - a.default_price
       })
     },
-    pick(state, payload) {
+    pick (state, payload) {
       let arr = []
       state.lineList.forEach(item => {
         if (
@@ -42,7 +42,7 @@ export default {
     }
   },
   actions: {
-    getlineList(contect, payload) {
+    getlineList (contect, payload) {
       axios
         .get('https://app.toursforfun.com/api/search/category', {
           params: {

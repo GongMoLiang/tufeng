@@ -77,31 +77,31 @@
 import { mapState } from 'vuex'
 export default {
   name: 'center',
-  data() {
+  data () {
     return {
       username: ''
     }
   },
   methods: {
     // 去购物车界面
-    goCard() {
+    goCard () {
       this.$router.push('./card')
     },
     // 去收藏页面
-    goCollect() {
+    goCollect () {
       this.$router.push('./collect')
     },
-    noLogin() {
+    noLogin () {
       window.localStorage.removeItem('userInfo')
       location.reload()
     }
   },
   computed: {
     ...mapState('collect', ['collectList']),
-    length() {
+    length () {
       return this.collectList.length
     },
-    show() {
+    show () {
       if (!this.username) {
         return true
       } else {
@@ -109,7 +109,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     let user = JSON.parse(window.localStorage.getItem('userInfo'))
     if (user) {
       this.username = user.username
